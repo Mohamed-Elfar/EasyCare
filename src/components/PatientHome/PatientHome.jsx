@@ -32,7 +32,6 @@ const Profile = () => {
             },
           }
         );
-        console.log(response.data);
         setProfile(response.data);
         setLoading(false);
       } catch (err) {

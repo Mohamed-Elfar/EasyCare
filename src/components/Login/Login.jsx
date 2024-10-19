@@ -8,7 +8,6 @@ export default function Login() {
   let navigate = useNavigate();
   let [apiError, setError] = useState("");
 
-  // Handle login
   async function handleRegister(formsData) {
     await axios
       .post(
@@ -16,7 +15,6 @@ export default function Login() {
         formsData
       )
       .then((response) => {
-        console.log(formsData);
         response.data.user_type === "pharmacist"
           ? navigate("/pharmacistHome")
           : response.data.user_type === "doctor"
