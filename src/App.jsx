@@ -6,6 +6,7 @@ import Home from "./components/Home/Home";
 import PatientRegister from "./components/PatientRegister/PatientRegister";
 import Doctors from "./components/Doctors/Doctors";
 import PharmacyRegister from "./components/PharmacyRegister/PharmacyRegister";
+import PharmacistHome from "./components/PharmacistHome/PharmacistHome";
 
 import Contact from "./components/Contact/Contact";
 import Register from "./components/Register/Register";
@@ -27,6 +28,7 @@ function App() {
         { path: "patientRegister", element: <PatientRegister /> },
         { path: "doctors", element: <Doctors /> },
         { path: "pharmacyRegister", element: <PharmacyRegister /> },
+        { path: "pharmacistHome", element: <PharmacistHome /> },
         { path: "forgotPassword", element: <ForgetPassword /> },
         { path: "otp", element: <Otp /> },
         { path: "contact", element: <Contact /> },
