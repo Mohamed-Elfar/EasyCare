@@ -1,0 +1,25 @@
+.custom-nav-link {
+    font-size: 20px ;             
+    position: relative;
+    text-decoration: none;        
+    color: rgba(0, 0, 0, 0.719);                 
+  }
+  
+  .custom-nav-link:hover {
+    color: blue !important;                  
+  }
+  
+  .custom-nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: rgb(0, 0, 255) ;      
+    transition: width 0.3s ease;  
+  }
+  
+  .custom-nav-link:hover::after {
+    width: 100%;                  
+  }
