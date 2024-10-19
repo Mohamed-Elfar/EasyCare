@@ -23,7 +23,7 @@ export default function DoctorHome() {
   useEffect(() => {
     const fetchProfile = async () => {
       const token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI5MjE3NjQxLCJpYXQiOjE3MjkxMzEyNDEsImp0aSI6ImQ0MDBlN2Q1Y2ZhZDQyMjc5NjYzYTcxMDE1MmZjZTJiIiwidXNlcl9pZCI6MjN9.lzR99fz8bX3-IosPbwQay9Zkll4TA8tWEAcU-4cY3eI";
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI5NDYyMjQ3LCJpYXQiOjE3MjkzNzU4NDcsImp0aSI6IjZkODU5OTU3NDU5MDRkMjdhMzY4NmY1YjEyMTI2OTA3IiwidXNlcl9pZCI6NzN9.GjSCn4FgvZyebB91KqLOwtxiyOWgmV9gAO0CQjxIGyo";
       try {
         const response = await axios.get(
           "https://grackle-notable-hardly.ngrok-free.app/api/profile/",

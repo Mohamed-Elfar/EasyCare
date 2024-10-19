@@ -83,12 +83,12 @@ export default function PatientRegister() {
         "Please enter any allergies, separated by commas (e.g., peanuts, shellfish)."
       )
       .required("Allergies is required"),
-    other_disease: Yup.string()
+      other_diseases: Yup.string()
       .matches(
         /^[a-zA-Z\s,]{3,100}$/,
         "Please enter any other diseases, separated by commas (e.g., seasonal flu, asthma)."
       )
-      .required("other_disease is required"),
+      .required("other_diseases is required"),
   });
 
   let formik = useFormik({
@@ -104,7 +104,7 @@ export default function PatientRegister() {
       diabetes: "",
       heart_disease: "",
       allergies: "",
-      other_disease: "",
+      other_diseases: "",
     },
     validationSchema,
     onSubmit: submitRegister,
@@ -417,23 +417,23 @@ export default function PatientRegister() {
                   ) : (
                     ""
                   )}
-                  <label htmlFor="other_disease" className="form-label mt-3">
-                    Other Disease :
+                  <label htmlFor="other_diseases" className="form-label mt-3">
+                    Other Diseases :
                   </label>
                   <input
-                    name="other_disease"
-                    id="other_disease"
-                    value={formik.values.other_disease}
+                    name="other_diseases"
+                    id="other_diseases"
+                    value={formik.values.other_diseases}
                     onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
                     type="text"
                     className="form-control"
                     placeholder="e.g., seasonal flu , asthma , ..."
                   />
-                  {formik.errors.other_disease &&
-                  formik.touched.other_disease ? (
+                  {formik.errors.other_diseases &&
+                  formik.touched.other_diseases ? (
                     <div className="text-danger font-bold mt-2 p-2">
-                      {formik.errors.other_disease}
+                      {formik.errors.other_diseases}
                     </div>
                   ) : (
                     ""

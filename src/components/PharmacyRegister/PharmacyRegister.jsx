@@ -18,7 +18,7 @@ export default function PharmacyRegister() {
     setApiError(null); // إعادة تعيين الخطأ في كل مرة يتم استدعاء التسجيل
     const updatedValues = {
       ...values,
-      user_type: "doctor",
+      user_type: "pharmacist",
     };
     try {
       const response = await axios.post(

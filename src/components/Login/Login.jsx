@@ -16,6 +16,7 @@ export default function Login() {
         formsData
       )
       .then((response) => {
+        console.log(formsData);
         response.data.user_type === "pharmacist"
           ? navigate("/pharmacistHome")
           : response.data.user_type === "doctor"

@@ -16,7 +16,7 @@ export default function PharmacistHome() {
 //   const { userToken } = useContext(userContext);
 
   const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI5MzcyMTk1LCJpYXQiOjE3MjkyODU3OTUsImp0aSI6ImYxYjZlMTcyZDBiMjRiMWVhN2I0OWExMmZiMTFhZjA5IiwidXNlcl9pZCI6MjV9.rVkVq5QCQCBInMjcrw_K6EHy8LBoo1urVMnq5aYXr-8";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI5NDYyMDU1LCJpYXQiOjE3MjkzNzU2NTUsImp0aSI6ImQ4YmZiYmIxMTIxYjQyNTE4ZGFlMGM2MDkyOGMxMGE4IiwidXNlcl9pZCI6NzF9.hpg6-K5BquiQ5XzF8s9MdUVO9PJZyG-hxBQEGdNkOPA";
 
   async function getPharmacistProfile() {
     setIsPageLoading(true);
