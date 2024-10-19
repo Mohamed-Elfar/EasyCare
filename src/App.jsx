@@ -16,7 +16,8 @@ import Role from "./components/Role/Role";
 import ForgetPassword from "./components/ForgetPassword/ForgetPassword";
 import UserContextProvider from "./components/UserContext/UserContext";
 import Otp from "./components/Otp/Otp";
-
+import DoctorHome from "./components/DoctorHome/DoctorHome";
+import PatientHome from "./components/PatientHome/PatientHome";
 function App() {
   let routers = createBrowserRouter([
     {
@@ -29,6 +30,8 @@ function App() {
         { path: "doctors", element: <Doctors /> },
         { path: "pharmacyRegister", element: <PharmacyRegister /> },
         { path: "pharmacistHome", element: <PharmacistHome /> },
+        { path: "doctorHome", element: <DoctorHome /> },
+        { path: "patientHome", element: <PatientHome /> },
         { path: "forgotPassword", element: <ForgetPassword /> },
         { path: "otp", element: <Otp /> },
         { path: "contact", element: <Contact /> },

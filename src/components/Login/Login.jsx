@@ -16,10 +16,11 @@ export default function Login() {
         formsData
       )
       .then((response) => {
-        if (response.data.access !== "") {
-          console.log(localStorage.token);
-          navigate("/profile");
-        }
+        response.data.user_type === "pharmacist"
+          ? navigate("/pharmacistHome")
+          : response.data.user_type === "doctor"
+          ? navigate("/doctorHome")
+          : navigate("/patientHome");
       })
       .catch((error) => {
         setError(error.response.data.message);
