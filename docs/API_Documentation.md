@@ -13,6 +13,7 @@ https://grackle-notable-hardly.ngrok-free.app/api/
 
 **Request Body:**
 **For Patient Registration:**
+```json
 {
   "full_name": "Emily Davis",
   "email": "patient@example.com",
@@ -29,6 +30,7 @@ https://grackle-notable-hardly.ngrok-free.app/api/
   "user_type": "patient"
 }
 **For pharmacist Registration:**
+```json
 {
     "full_name": "Pharmacist Jane Smith",
     "email": "pharmacists@example.com",
