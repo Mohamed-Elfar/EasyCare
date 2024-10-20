@@ -1,6 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
-// import NavBar from './components/NavBar/NavBar'
 import Layout from "./components/Layout/Layout";
 import Home from "./components/Home/Home";
 import PatientRegister from "./components/PatientRegister/PatientRegister";
@@ -14,15 +13,10 @@ import NotFound from "./components/NotFound/NotFound";
 import Role from "./components/Role/Role";
 import ForgetPassword from "./components/ForgetPassword/ForgetPassword";
 import UserContextProvider from "./components/UserContext/UserContext";
-
 import Otp from "./components/Otp/Otp";
 import DoctorHome from "./components/DoctorHome/DoctorHome";
 import PatientHome from "./components/PatientHome/PatientHome";
-<<<<<<< HEAD
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
-=======
-//
->>>>>>> 968ec190a610e9b628d7bc3568673f1c56b31938
 function App() {
   let routers = createBrowserRouter([
     {
