@@ -7,7 +7,6 @@ import PatientRegister from "./components/PatientRegister/PatientRegister";
 import Doctors from "./components/Doctors/Doctors";
 import PharmacyRegister from "./components/PharmacyRegister/PharmacyRegister";
 import PharmacistHome from "./components/PharmacistHome/PharmacistHome";
-
 import Contact from "./components/Contact/Contact";
 import Register from "./components/Register/Register";
 import Login from "./components/Login/Login";
@@ -19,7 +18,11 @@ import UserContextProvider from "./components/UserContext/UserContext";
 import Otp from "./components/Otp/Otp";
 import DoctorHome from "./components/DoctorHome/DoctorHome";
 import PatientHome from "./components/PatientHome/PatientHome";
+<<<<<<< HEAD
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+=======
+//
+>>>>>>> 968ec190a610e9b628d7bc3568673f1c56b31938
 function App() {
   let routers = createBrowserRouter([
     {

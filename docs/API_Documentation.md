@@ -12,7 +12,7 @@ https://grackle-notable-hardly.ngrok-free.app/api/
 - **Purpose:** Register a new user (patient, doctor, or pharmacist) in the system.
 
 **Request Body:**
-
+**For Patient Registration:**
 ```json
 {
   "full_name": "Emily Davis",
@@ -29,14 +29,44 @@ https://grackle-notable-hardly.ngrok-free.app/api/
   "other_diseases": "Seasonal flu",
   "user_type": "patient"
 }
+**For pharmacist Registration:**
+```json
+{
+    "full_name": "Pharmacist Jane Smith",
+    "email": "pharmacists@example.com",
+    "national_id": "23356789012345",
+    "phone_number": "01398765432",
+    "password": "StrongPassword123",
+    "gender": "Female",
+    "birthday": "1990-08-22",
+    "address": "456 Pharmacy Lane, Healthtown",
+    "pharmacy_name": "Smith's Pharmacy",
+    "pharmacy_address": "456 Pharmacy Lane, Healthtown",
+    "user_type":"pharmacist"
+}
+**For doctor Registration:**
+{
+    "full_name": "Dr. John Doe",
+    "email": "doctor@example.com",
+    "national_id": "12345678901234",
+    "phone_number": "01012345678",
+    "password": "StrongPassword123",
+    "gender": "Male",
+    "birthday": "1980-05-15",
+    "address": "123 Doctor Street, MedCity",
+    "hospital": "General Hospital",
+    "clinic": "Doe Clinic",
+    "specialization": "Cardiology",
+    "user_type": "doctor"
+}
 Expected Response:
 
 {
   "status": "User created"
 }
 2. Login {#login}
--Endpoint: POST /login/
--Purpose: Authenticate a user and obtain JWT tokens.
+- **Endpoint:** POST /login/
+- **Purpose:** Authenticate a user and obtain JWT tokens.
 Request Body:
 
 {
@@ -51,8 +81,8 @@ Expected Response:
   "user_type": "pharmacist|doctor|patient"
 }
 3. Request Password Reset {#request-password-reset}
--Endpoint: POST /request-password-reset/
--Purpose: Initiates a password reset request by sending an OTP to the user's email.
+- **Endpoint:** POST /request-password-reset/
+- **Purpose:** Initiates a password reset request by sending an OTP to the user's email.
 Request Body:
 {
   "email": "user@example.com"
@@ -62,8 +92,8 @@ Expected Response:
   "status": "OTP sent to email."
 }
 4. Verify OTP {#verify-otp}
--Endpoint: POST /verify-otp/
--Purpose: Verifies the OTP sent to the user during the password reset process.
+- **Endpoint:** POST /verify-otp/
+- **Purpose:** Verifies the OTP sent to the user during the password reset process.
 Request Body:
 {
   "email": "user@example.com",
@@ -75,8 +105,8 @@ Expected Response:
 }
 
 5. Set New Password {#set-new-password}
--Endpoint: POST /set-new-password/
--Purpose: Sets a new password for the user after OTP verification.
+- **Endpoint:** POST /set-new-password/
+- **Purpose:** Sets a new password for the user after OTP verification.
 Request Body:
 {
   "email": "user@example.com",
@@ -89,8 +119,8 @@ Expected Response:
 }
 
 6. User Profile {#user-profile}
--Endpoint: GET /profile/
--Purpose: Retrieves the profile information of the authenticated user.
+- **Endpoint:** GET /profile/
+- **Purpose:** Retrieves the profile information of the authenticated user.
 Required Headers:
 {
   "Authorization": "Bearer <access_token>",
@@ -113,8 +143,8 @@ Expected Response:
 }
 
 7. Patient Search {#patient-search}
--Endpoint: GET /search-patient/{national_id}/
--Purpose: Retrieves the information of a patient by their national ID.
+- **Endpoint:** GET /search-patient/{national_id}/
+- **Purpose:** Retrieves the information of a patient by their national ID.
 Required Headers:
 {
   "Authorization": "Bearer <access_token>"
@@ -127,8 +157,8 @@ Expected Response:
 }
 
 8. Add Prescription {#add-prescription}
--Endpoint: POST /patients/{national_id}/prescriptions/
--Purpose: Allow to add prescriptions associated with a specific patient.
+- **Endpoint:** POST /patients/{national_id}/prescriptions/
+- **Purpose:** Allow to add prescriptions associated with a specific patient.
 Required Headers:
 {
   "Authorization": "Bearer <access_token>"
@@ -145,12 +175,13 @@ Expected Response:
 }
 
 9. Doctors Categories {#doctors-categories}
--Endpoint: GET /doctors-categories/
--Purpose: Retrieves a list of all doctors with their profile details.
+- **Endpoint:** GET /doctors-categories/
+- **Purpose:** Retrieves a list of all doctors with their profile details.
 Expected Response:
 [
   {
     "full_name": "Dr. John Doe",
+    "phone_number": "01060493144",
     "specialization": "Cardiology",
     "hospital": "General Hospital",
     "clinic": "Doe Clinic"
@@ -159,12 +190,13 @@ Expected Response:
 ]
 
 10. Pharmacists Categories {#pharmacists-categories}
--Endpoint: GET /pharmacists-categories/
--Purpose: Retrieves a list of all pharmacists with their profile details.
+- **Endpoint:** GET /pharmacists-categories/
+- **Purpose:** Retrieves a list of all pharmacists with their profile details.
 Expected Response:
 [
   {
     "full_name": "Pharmacist Jane Smith",
+    "phone_number": "01060493144",
     "pharmacy_name": "Smith's Pharmacy",
     "pharmacy_address": "456 Pharmacy Lane, Healthtown"
   },
