@@ -151,6 +151,7 @@ Expected Response:
 [
   {
     "full_name": "Dr. John Doe",
+    "phone_number": "01060493144",
     "specialization": "Cardiology",
     "hospital": "General Hospital",
     "clinic": "Doe Clinic"
@@ -165,6 +166,7 @@ Expected Response:
 [
   {
     "full_name": "Pharmacist Jane Smith",
+    "phone_number": "01060493144",
     "pharmacy_name": "Smith's Pharmacy",
     "pharmacy_address": "456 Pharmacy Lane, Healthtown"
   },
