@@ -15,23 +15,68 @@ import NotFound from "./components/NotFound/NotFound";
 import Role from "./components/Role/Role";
 import ForgetPassword from "./components/ForgetPassword/ForgetPassword";
 import UserContextProvider from "./components/UserContext/UserContext";
+
 import Otp from "./components/Otp/Otp";
 import DoctorHome from "./components/DoctorHome/DoctorHome";
 import PatientHome from "./components/PatientHome/PatientHome";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 function App() {
   let routers = createBrowserRouter([
     {
       path: "/",
       element: <Layout />,
       children: [
-        { index: true, element: <Home /> },
-        { path: "home", element: <Home /> },
+        {
+          index: true,
+          element: (
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: "home",
+          element: (
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          ),
+        },
         { path: "patientRegister", element: <PatientRegister /> },
-        { path: "doctors", element: <Doctors /> },
+        {
+          path: "doctors",
+          element: (
+            <ProtectedRoute>
+              <Doctors />
+            </ProtectedRoute>
+          ),
+        },
         { path: "pharmacyRegister", element: <PharmacyRegister /> },
-        { path: "pharmacistHome", element: <PharmacistHome /> },
-        { path: "doctorHome", element: <DoctorHome /> },
-        { path: "patientHome", element: <PatientHome /> },
+        {
+          path: "pharmacistHome",
+          element: (
+            <ProtectedRoute>
+              {" "}
+              <PharmacistHome />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: "doctorHome",
+          element: (
+            <ProtectedRoute>
+              <DoctorHome />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: "patientHome",
+          element: (
+            <ProtectedRoute>
+              <PatientHome />
+            </ProtectedRoute>
+          ),
+        },
         { path: "forgotPassword", element: <ForgetPassword /> },
         { path: "otp", element: <Otp /> },
         { path: "contact", element: <Contact /> },
