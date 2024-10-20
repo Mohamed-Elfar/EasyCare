@@ -12,7 +12,7 @@ https://grackle-notable-hardly.ngrok-free.app/api/
 - **Purpose:** Register a new user (patient, doctor, or pharmacist) in the system.
 
 **Request Body:**
-For Patient Registration:
+**For Patient Registration:**
 {
   "full_name": "Emily Davis",
   "email": "patient@example.com",
@@ -28,7 +28,7 @@ For Patient Registration:
   "other_diseases": "Seasonal flu",
   "user_type": "patient"
 }
-For pharmacist Registration:
+**For pharmacist Registration:**
 {
     "full_name": "Pharmacist Jane Smith",
     "email": "pharmacists@example.com",
@@ -42,7 +42,7 @@ For pharmacist Registration:
     "pharmacy_address": "456 Pharmacy Lane, Healthtown",
     "user_type":"pharmacist"
 }
-For doctor Registration:
+**For doctor Registration:**
 {
     "full_name": "Dr. John Doe",
     "email": "doctor@example.com",
