@@ -1,15 +1,15 @@
 import React, { createContext, useState } from "react";
 
-export const UserContext = createContext();
+export const userContext = createContext();
 
 export default function UserContextProvider(props) {
-  const [userToken, setUserToken] = useState("");
+  const [userToken, setUserToken] = useState(null);
 
   return (
     <>
-      <UserContext.Provider value={{ userToken, setUserToken }}>
+      <userContext.Provider value={{ userToken, setUserToken }}>
         {props.children}
-      </UserContext.Provider>
+      </userContext.Provider>
     </>
   );
 }

@@ -1,11 +1,11 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
-// import { userContext } from "../Contexts/UserContext";
 import toast from "react-hot-toast";
 
 import { Helmet } from "react-helmet";
 import Loading from "../Loading/Loading";
 import { Blocks } from "react-loader-spinner";
+import { userContext } from "../UserContext/UserContext";
 
 export default function PharmacistHome() {
   const [medicineList, setMedicineList] = useState("");
@@ -13,10 +13,7 @@ export default function PharmacistHome() {
   const [isLoading, setIsLoading] = useState("");
   const [isPageLoading, setIsPageLoading] = useState("");
   const [inputValue, setInputValue] = useState("");
-//   const { userToken } = useContext(userContext);
-
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI5NDYyMDU1LCJpYXQiOjE3MjkzNzU2NTUsImp0aSI6ImQ4YmZiYmIxMTIxYjQyNTE4ZGFlMGM2MDkyOGMxMGE4IiwidXNlcl9pZCI6NzF9.hpg6-K5BquiQ5XzF8s9MdUVO9PJZyG-hxBQEGdNkOPA";
+  const { userToken, setUserToken } = useContext(userContext);
 
   async function getPharmacistProfile() {
     setIsPageLoading(true);
@@ -26,7 +23,7 @@ export default function PharmacistHome() {
         {
           headers: {
             "ngrok-skip-browser-warning": "true",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${userToken}`,
           },
         }
       );
@@ -48,13 +45,12 @@ export default function PharmacistHome() {
         {
           headers: {
             "ngrok-skip-browser-warning": "true",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${userToken}`,
           },
         }
       );
       if (response.status === 200) {
         setIsLoading(false);
-        console.log("RESPOOONSEEE", response.data);
         setMedicineList(response.data);
       }
     } catch (error) {
@@ -77,16 +73,20 @@ export default function PharmacistHome() {
       {isPageLoading ? (
         <Loading />
       ) : (
-        <div className="container my-5 py-5">
+        <div className="container my-5 py-5 text-center">
           <div className=" pharmacistHomeContainer pb-5">
             <div className="pharmacy-info py-3">
               <h1 className="display-3-md mx-2">
                 {pharmacistProfile.pharmacy_name}
               </h1>
               <div className="d-flex flex-wrap text-start justify-content-between align-items-center mx-2">
-                <p className="bold">{pharmacistProfile?.pharmacy_address}</p>
-                <p className="bold">{pharmacistProfile?.email}</p>
-                <p className="bold">{pharmacistProfile?.phone_number}</p>
+                <p className="bold">
+                  Address : {pharmacistProfile?.pharmacy_address}
+                </p>
+                <p className="bold">Email : {pharmacistProfile?.email}</p>
+                <p className="bold">
+                  Phone : {pharmacistProfile?.phone_number}
+                </p>
                 <p className="bold">{pharmacistProfile?.full_name}</p>
               </div>
             </div>

@@ -1,5 +1,5 @@
 // import React from 'react'
-import './PharmacyRegister.css'
+import "./PharmacyRegister.css";
 import axios from "axios";
 import { useFormik } from "formik";
 import React, { useState } from "react";
@@ -8,14 +8,13 @@ import * as Yup from "yup";
 import { Blocks } from "react-loader-spinner";
 import image from "../../assets/images/patient.jpg";
 export default function PharmacyRegister() {
-  const [apiError, setApiError] = useState(null); // استخدم null في البداية
+  const [apiError, setApiError] = useState(null);
   const [loading, setLoading] = useState(false);
   let navigate = useNavigate();
 
-  // دالة التسجيل
   async function handelRegister(values) {
     setLoading(true);
-    setApiError(null); // إعادة تعيين الخطأ في كل مرة يتم استدعاء التسجيل
+    setApiError(null);
     const updatedValues = {
       ...values,
       user_type: "pharmacist",
@@ -35,7 +34,6 @@ export default function PharmacyRegister() {
     }
   }
 
-  // سكيم التحقق من صحة البيانات
   let validationSchema = Yup.object({
     full_name: Yup.string()
       .required("Full Name is required")
@@ -88,7 +86,7 @@ export default function PharmacyRegister() {
   });
   return (
     <>
-<section className="bg-light py-3 py-md-5">
+      <section className="bg-light py-3 py-md-5">
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
@@ -144,7 +142,6 @@ export default function PharmacyRegister() {
                                 ? "is-invalid"
                                 : ""
                             }`}
-                            
                             name="email"
                             value={formik.values.email}
                             id="email"
@@ -284,7 +281,7 @@ export default function PharmacyRegister() {
                             htmlFor="female"
                           >
                             Female
-                            </label>
+                          </label>
                         </div>
                       </div>
                       <div className="col-12">
@@ -377,7 +374,9 @@ export default function PharmacyRegister() {
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
                             type="text"
-                            className={`form-control ${formik.touched.pharmacy_address && formik.errors.pharmacy_address
+                            className={`form-control ${
+                              formik.touched.pharmacy_address &&
+                              formik.errors.pharmacy_address
                                 ? "is-invalid"
                                 : ""
                             }`}
@@ -400,10 +399,7 @@ export default function PharmacyRegister() {
                             </div>
                           ) : null}
                         </div>
-                      </div>                      
-
-
-                   
+                      </div>
 
                       {/* Submit Button */}
                       <div className="col-12">
@@ -448,5 +444,5 @@ export default function PharmacyRegister() {
         </div>
       </section>
     </>
-  )
+  );
 }

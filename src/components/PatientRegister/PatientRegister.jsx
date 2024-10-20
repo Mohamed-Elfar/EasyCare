@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import  { useState } from "react";
+import { useState } from "react";
 import * as Yup from "yup";
 import image from "../../assets/images/medical.65d592a94c9a25.07563121 (1).png";
 import axios from "axios";
@@ -59,12 +59,12 @@ export default function PatientRegister() {
       .required("Phone is required"),
     password: Yup.string()
       .matches(
-        /^[A-Za-z0-9]{9,13}/,
-        "Please enter a password that is 9 to 12 characters long. The password can only contain letters (A-Z, a-z) and numbers (0-9)."
+        /^[A-Za-z0-9]{9,20}/,
+        "Please enter a password that is 9 to 20 characters long. The password can only contain letters (A-Z, a-z) and numbers (0-9)."
       )
       .required("Password is required")
       .min(9)
-      .max(13),
+      .max(20),
     gender: Yup.string()
       .oneOf(["male", "female"], "Please choose one")
       .required("Please choose one"),
@@ -83,7 +83,7 @@ export default function PatientRegister() {
         "Please enter any allergies, separated by commas (e.g., peanuts, shellfish)."
       )
       .required("Allergies is required"),
-      other_diseases: Yup.string()
+    other_diseases: Yup.string()
       .matches(
         /^[a-zA-Z\s,]{3,100}$/,
         "Please enter any other diseases, separated by commas (e.g., seasonal flu, asthma)."
@@ -350,7 +350,9 @@ export default function PatientRegister() {
                     ""
                   )}
 
-                  <div className="form-label mt-3">Do you have heart disease ?</div>
+                  <div className="form-label mt-3">
+                    Do you have heart disease ?
+                  </div>
 
                   <div className="form-check">
                     <input
@@ -365,7 +367,10 @@ export default function PatientRegister() {
                       }
                       checked={formik.values.heart_disease === true}
                     />
-                    <label className="form-check-label" htmlFor="heart_diseaseTrue">
+                    <label
+                      className="form-check-label"
+                      htmlFor="heart_diseaseTrue"
+                    >
                       Yes
                     </label>
                   </div>
@@ -383,7 +388,10 @@ export default function PatientRegister() {
                       }
                       checked={formik.values.heart_disease === false}
                     />
-                    <label className="form-check-label" htmlFor="heart_diseaseFalse">
+                    <label
+                      className="form-check-label"
+                      htmlFor="heart_diseaseFalse"
+                    >
                       No
                     </label>
                   </div>

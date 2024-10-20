@@ -14,27 +14,28 @@ import {
 import "./DoctorHome.css";
 import { Blocks } from "react-loader-spinner";
 import image from "../../assets/images/doctor.jpeg";
+import { useContext } from "react";
+import { userContext } from "../UserContext/UserContext";
+import Loading from "../Loading/Loading";
 
 export default function DoctorHome() {
   const [loading, setLoading] = useState(true);
   const [profile, setProfile] = useState(null);
   const [error, setError] = useState(null);
+  let { userToken } = useContext(userContext);
 
   useEffect(() => {
     const fetchProfile = async () => {
-      const token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI5NDYyMjQ3LCJpYXQiOjE3MjkzNzU4NDcsImp0aSI6IjZkODU5OTU3NDU5MDRkMjdhMzY4NmY1YjEyMTI2OTA3IiwidXNlcl9pZCI6NzN9.GjSCn4FgvZyebB91KqLOwtxiyOWgmV9gAO0CQjxIGyo";
       try {
         const response = await axios.get(
           "https://grackle-notable-hardly.ngrok-free.app/api/profile/",
           {
             headers: {
               "ngrok-skip-browser-warning": "true",
-              Authorization: `Bearer ${token}`,
+              Authorization: `Bearer ${userToken}`,
             },
           }
         );
-        console.log(response.data);
         setProfile(response.data);
         setLoading(false);
       } catch (error) {
@@ -45,18 +46,7 @@ export default function DoctorHome() {
     fetchProfile();
   }, []);
 
-  if (loading)
-    return (
-      <div className="loading-container">
-        <Blocks
-          visible={true}
-          height="80"
-          width="80"
-          ariaLabel="blocks-loading"
-          colors={["#FF6F61", "#FFD700", "#3CB371"]}
-        />
-      </div>
-    );
+  if (loading) return <Loading />;
 
   if (error)
     return (

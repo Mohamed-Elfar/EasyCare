@@ -13,6 +13,7 @@ import {
 import { Blocks } from "react-loader-spinner";
 import image from "../../assets/images/patient.jpeg";
 import "./PatientHome.css";
+import Loading from "../Loading/Loading";
 
 const Profile = () => {
   const [profile, setProfile] = useState(null);
@@ -21,7 +22,8 @@ const Profile = () => {
 
   useEffect(() => {
     const fetchPatientProfile = async () => {
-      const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI5NDYxMTc3LCJpYXQiOjE3MjkzNzQ3NzcsImp0aSI6IjU3NjY4ZTE0N2ZmODRjNDU4NTUxZDAwMmIyZThhYWJiIiwidXNlcl9pZCI6NzB9.B6ZdR44lRWUWw5azxNG7omWt06HQ2JBlyZEiGNR2WV0"; // Replace with your actual token
+      const token =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI5NDYxMTc3LCJpYXQiOjE3MjkzNzQ3NzcsImp0aSI6IjU3NjY4ZTE0N2ZmODRjNDU4NTUxZDAwMmIyZThhYWJiIiwidXNlcl9pZCI6NzB9.B6ZdR44lRWUWw5azxNG7omWt06HQ2JBlyZEiGNR2WV0"; // Replace with your actual token
       try {
         const response = await axios.get(
           "https://grackle-notable-hardly.ngrok-free.app/api/profile/",
@@ -42,18 +44,7 @@ const Profile = () => {
     fetchPatientProfile();
   }, []);
 
-  if (loading)
-    return (
-      <div className="loading-container">
-        <Blocks
-          visible={true}
-          height="80"
-          width="80"
-          ariaLabel="blocks-loading"
-          colors={["#FF6F61", "#FFD700", "#3CB371"]}
-        />
-      </div>
-    );
+  if (loading) return <Loading />;
 
   if (error)
     return (
@@ -135,7 +126,8 @@ const Profile = () => {
           <div className="profile-card">
             <FaNotesMedical className="profile-icon" />
             <p>
-              <strong>Other Diseases:</strong> {profile.other_diseases || "None"}
+              <strong>Other Diseases:</strong>{" "}
+              {profile.other_diseases || "None"}
             </p>
           </div>
         </div>
