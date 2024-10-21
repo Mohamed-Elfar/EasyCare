@@ -15,23 +15,27 @@ import { Blocks } from "react-loader-spinner";
 import image from "../../assets/images/patient.jpeg";
 import "./PatientHome.css";
 import Loading from "../Loading/Loading";
+import { useContext } from "react";
+import { userContext } from "../UserContext/UserContext";
+
 
 const Profile = () => {
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { userToken, setUserToken } = useContext(userContext);
+
 
   useEffect(() => {
     const fetchPatientProfile = async () => {
-      const token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI5NDYxMTc3LCJpYXQiOjE3MjkzNzQ3NzcsImp0aSI6IjU3NjY4ZTE0N2ZmODRjNDU4NTUxZDAwMmIyZThhYWJiIiwidXNlcl9pZCI6NzB9.B6ZdR44lRWUWw5azxNG7omWt06HQ2JBlyZEiGNR2WV0"; // Replace with your actual token
+     
       try {
         const response = await axios.get(
           "https://grackle-notable-hardly.ngrok-free.app/api/profile/",
           {
             headers: {
               "ngrok-skip-browser-warning": "true",
-              Authorization: `Bearer ${token}`,
+              Authorization: `Bearer ${userToken}`,
             },
           }
         );
