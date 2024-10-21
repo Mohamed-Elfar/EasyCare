@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Navbar, Nav, Container, Button } from "react-bootstrap";
 import { Row, Col } from "react-bootstrap";
 import "./NavBar.css";
-import logo from "../../assets/images/logo.png";
+import imageL from "../../assets/images/imageLogo.png";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { userContext } from "../UserContext/UserContext";
@@ -25,7 +25,7 @@ export default function NavBar() {
             <Row className="align-items-center">
               <Col xs={12} md={2}>
                 <img
-                  src={logo}
+                  src={imageL}
                   alt="Logo"
                   width="60"
                   height="60"
