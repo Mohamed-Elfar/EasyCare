@@ -17,6 +17,8 @@ import UserContextProvider from "./components/UserContext/UserContext";
 import Otp from "./components/Otp/Otp";
 import DoctorHome from "./components/DoctorHome/DoctorHome";
 import PatientHome from "./components/PatientHome/PatientHome";
+import PatientCatigoryDoctors from "./components/PatientCatigoryDoctors/PatientCatigoryDoctors";
+import PatientCatigoryPharmacies from "./components/PatientCatigoryPharmacies/PatientCatigoryPharmacies";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 function App() {
   let routers = createBrowserRouter([
@@ -75,7 +77,18 @@ function App() {
               <PatientHome />
             </ProtectedRoute>
           ),
+          children: [
+            {
+              path: "patientCategoryDoctors",
+              element: <PatientCatigoryDoctors />,
+            },
+            {
+              path: "patientCatigoryPharmacies",
+              element: <PatientCatigoryPharmacies />,
+            },
+          ],
         },
+
         { path: "forgotPassword", element: <ForgetPassword /> },
         { path: "otp", element: <Otp /> },
         { path: "contact", element: <Contact /> },

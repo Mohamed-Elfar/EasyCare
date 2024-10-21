@@ -26,3 +26,7 @@ It will open one time to user on starting the process ,after create account page
 Error 404
 
 # Add imageL To nav + Change website logo and name in index
+
+# Add Link to Home
+
+let's Start button >>>
