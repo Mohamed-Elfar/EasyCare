@@ -1,7 +1,10 @@
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 # EasyCare
 EasyCare React Project
 =======
+>>>>>>> 525c2f59faa4bc43b9e0279a37b23698a8590c2f
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
@@ -15,6 +18,17 @@ User Roles:
 
 1. Patient: Can view medical history, prescriptions, and upcoming appointments.
 
+<<<<<<< HEAD
+
+2. Doctor: Can manage patient records, view medical history, and issue prescriptions.
+
+
+3. Pharmacist: Can access prescriptions based on a patient’s national ID and dispense medications accordingly.
+
+
+
+Objective: The goal of EasyCare is to enhance the quality of healthcare by reducing manual errors, ensuring data integrity, and providing a centralized platform for all healthcare stakeholders.
+=======
 2. Doctor: Can manage patient records, view medical history, and issue prescriptions.
 
 3. Pharmacist: Can access prescriptions based on a patient’s national ID and dispense medications accordingly.
@@ -40,3 +54,4 @@ let's Start button >>>
 PatientCategoryDoctors: contain all DOCs which user can chooses from them to take his process
 PatientCategoryPharmacy: contain all nearest Pharmacies which user can chooses from to take his order
 >>>>>>> a0120b26558b0533cffdf1ca820d3f5a09d3f518
+>>>>>>> 525c2f59faa4bc43b9e0279a37b23698a8590c2f

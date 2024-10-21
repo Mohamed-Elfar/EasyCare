@@ -86,13 +86,19 @@ hr {
     font-weight: 600;
     font-style:normal;
   } */
+  /* .navbar-brand{
+
 /* .navbar-brand{
+>>>>>>> 525c2f59faa4bc43b9e0279a37b23698a8590c2f
     color: #252B42;
     font-weight: 700;
     font-size: 24;
   }
    */
+  /* .nav-link{
+=======
 /* .nav-link{
+>>>>>>> 525c2f59faa4bc43b9e0279a37b23698a8590c2f
    color: #737373 !important ;  
    font-weight: 700;
    font-size: 14;
@@ -107,6 +113,12 @@ hr {
     color: white !important ;
     border-radius: 7%;
   } */
+  /* .register{
+    background-color: #FC724D !important;
+    color: white !important ;
+    border-radius: 7% !important;
+  }  */
+
 /* .register{
     background-color: #FC724D !important;
     color: white !important ;

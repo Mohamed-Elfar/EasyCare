@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import axios from "axios";
 import {
@@ -17,34 +17,34 @@ import "./PatientHome.css";
 import Loading from "../Loading/Loading";
 import { userContext } from "../UserContext/UserContext";
 
-
 const Profile = () => {
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const { userToken, setUserToken } = useContext(userContext);
+  const { userToken } = useContext(userContext); // Get userToken from context
+
   useEffect(() => {
     const fetchPatientProfile = async () => {
-      
       try {
         const response = await axios.get(
           "https://grackle-notable-hardly.ngrok-free.app/api/profile/",
           {
             headers: {
               "ngrok-skip-browser-warning": "true",
-              Authorization: `Bearer ${userToken}`,
+              Authorization: `Bearer ${userToken}`, // Use the token from context
             },
           }
         );
         setProfile(response.data);
-        setLoading(false);
       } catch (err) {
         setError(err);
-        setLoading(false);
+      } finally {
+        setLoading(false); // Ensure loading state is updated
       }
     };
+
     fetchPatientProfile();
-  }, []);
+  }, [userToken]); // Add userToken as a dependency
 
   if (loading) return <Loading />;
 
@@ -57,7 +57,7 @@ const Profile = () => {
 
   return (
     <div className="profile-container">
-      <img src={image} alt="Doctor" className="profile-photo" />
+      <img src={image} alt="Patient" className="profile-photo" />
       <h1 className="profile-header">Patient Information</h1>
       {profile && (
         <div className="profile-cards">
@@ -112,24 +112,19 @@ const Profile = () => {
           <div className="profile-card">
             <FaNotesMedical className="profile-icon" />
             <p>
-              <strong>Heart Disease:</strong>{" "}
-              {profile.heart_disease ? "Yes" : "No"}
+              <strong>Heart Disease:</strong> {profile.heart_disease ? "Yes" : "No"}
             </p>
           </div>
           <div className="profile-card">
             <FaNotesMedical className="profile-icon" />
             <p>
-              <strong>Allergies:</strong>{" "}
-              {profile.allergies && profile.allergies.trim() !== ""
-                ? profile.allergies
-                : "None"}
+              <strong>Allergies:</strong> {profile.allergies?.trim() !== "" ? profile.allergies : "None"}
             </p>
           </div>
           <div className="profile-card">
             <FaNotesMedical className="profile-icon" />
             <p>
-              <strong>Other Diseases:</strong>{" "}
-              {profile.other_diseases || "None"}
+              <strong>Other Diseases:</strong> {profile.other_diseases || "None"}
             </p>
           </div>
         </div>
@@ -138,18 +133,12 @@ const Profile = () => {
       <div className="text-center bgSubMnuLink text-warning py-5 rounded-2 my-5">
         <ul className="d-flex flex-wrap justify-content-center list-unstyled">
           <li className="mx-3">
-            <NavLink
-              className="text-decoration-none text-white subMnuLink"
-              to={"patientCategoryDoctors"}
-            >
+            <NavLink className="text-decoration-none text-white subMnuLink" to={"patientCategoryDoctors"}>
               All Doctors
             </NavLink>
           </li>
           <li className="mx-3">
-            <NavLink
-              className="text-decoration-none text-white subMnuLink"
-              to={"patientCatigoryPharmacies"}
-            >
+            <NavLink className="text-decoration-none text-white subMnuLink" to={"patientCatigoryPharmacies"}>
               All Pharmacies
             </NavLink>
           </li>

@@ -15,35 +15,46 @@ export default function Login() {
 
   async function handleRegister(formsData) {
     setIsLoading(true);
-    await axios
-      .post(
+    try {
+      const response = await axios.post(
         "https://grackle-notable-hardly.ngrok-free.app/api/login/",
         formsData
-      )
-      .then((response) => {
-        setIsLoading(false);
-        localStorage.setItem("userToken", response.data.access);
-        setUserToken(response.data.access);
+      );
+      setIsLoading(false);
+      localStorage.setItem("userToken", response.data.access);
+      setUserToken(response.data.access);
 
-        response.data.user_type === "pharmacist"
-          ? navigate("/pharmacistHome")
-          : response.data.user_type === "doctor"
-          ? navigate("/doctorHome")
-          : navigate("/patientHome");
-      })
-      .catch((error) => {
-        setIsLoading(false);
+      // Clean navigation logic
+      switch (response.data.user_type) {
+        case "pharmacist":
+          navigate("/pharmacistHome");
+          break;
+        case "doctor":
+          navigate("/doctorHome");
+          break;
+        default:
+          navigate("/patientHome");
+          break;
+      }
+    } catch (error) {
+      setIsLoading(false);
+      // Handle error gracefully
+      if (error.response && error.response.data.message) {
         setError(error.response.data.message);
-      });
+      } else {
+        setError("An unexpected error occurred. Please try again.");
+      }
+    }
   }
+
   let validationSchema = Yup.object({
     national_id: Yup.string()
-      .matches(/^\d{14}$/, "National ID must be a number.")
-      .required("National id is required"),
+      .matches(/^\d{14}$/, "National ID must be a 14-digit number.")
+      .required("National ID is required"),
     password: Yup.string()
       .matches(
-        /^[A-Za-z0-9]{9,20}/,
-        "Please enter a password that is 9 to 20 characters long. The password can only contain letters (A-Z, a-z) and numbers (0-9)."
+        /^[A-Za-z0-9]{9,20}$/,
+        "Password must be 9 to 20 characters long, containing letters and numbers."
       )
       .required("Password is required")
       .min(9)
@@ -73,23 +84,21 @@ export default function Login() {
 
         <form className={style.loginForm} onSubmit={formik.handleSubmit}>
           <div className={`${style.formGroup} slide-in`}>
-            <label htmlFor="nationalId">National ID</label>
+            <label htmlFor="national_id">National ID</label>
             <input
               type="text"
               className={style.inputField}
-              id="nationalId"
+              id="national_id"
               name="national_id"
               value={formik.values.national_id}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               placeholder="Enter your National ID"
             />
-            {formik.errors.national_id && formik.touched.national_id ? (
+            {formik.errors.national_id && formik.touched.national_id && (
               <div className="text-danger font-bold mt-2 p-2">
                 {formik.errors.national_id}
               </div>
-            ) : (
-              ""
             )}
           </div>
 
@@ -105,21 +114,16 @@ export default function Login() {
               onBlur={formik.handleBlur}
               placeholder="Enter your Password"
             />
-            {formik.errors.password && formik.touched.password ? (
+            {formik.errors.password && formik.touched.password && (
               <div className="text-danger font-bold mt-2 p-2">
                 {formik.errors.password}
               </div>
-            ) : (
-              ""
             )}
           </div>
 
           <div className={`${style.formActions} fade-in`}>
             {/* Forgot Password Link */}
-            <NavLink
-              to={"/forgotPassword"}
-              className={style.forgotPasswordLink}
-            >
+            <NavLink to={"/forgotPassword"} className={style.forgotPasswordLink}>
               Forgot Password?
             </NavLink>
 
@@ -127,6 +131,7 @@ export default function Login() {
               <button
                 type="button"
                 className="btn myBtn fw-bold mt-3 px-4 py-2"
+                disabled
               >
                 <Blocks
                   height="28"
