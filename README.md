@@ -30,3 +30,8 @@ Error 404
 # Add Link to Home
 
 let's Start button >>>
+
+# Add 2 Category to PatientHome
+
+PatientCategoryDoctors: contain all DOCs which user can chooses from them to take his process
+PatientCategoryPharmacy: contain all nearest Pharmacies which user can chooses from to take his order
