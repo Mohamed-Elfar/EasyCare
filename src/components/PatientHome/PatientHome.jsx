@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext } from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import axios from "axios";
 import {
@@ -15,7 +15,6 @@ import { Blocks } from "react-loader-spinner";
 import image from "../../assets/images/patient.jpeg";
 import "./PatientHome.css";
 import Loading from "../Loading/Loading";
-import { useContext } from "react";
 import { userContext } from "../UserContext/UserContext";
 
 
@@ -24,11 +23,9 @@ const Profile = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { userToken, setUserToken } = useContext(userContext);
-
-
   useEffect(() => {
     const fetchPatientProfile = async () => {
-     
+      
       try {
         const response = await axios.get(
           "https://grackle-notable-hardly.ngrok-free.app/api/profile/",

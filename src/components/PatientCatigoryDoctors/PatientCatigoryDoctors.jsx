@@ -8,11 +8,14 @@ import {
   FaPhone,
   FaEnvelope,
   FaHeart,
+  FaChevronDown,
+  FaChevronUp,
 } from "react-icons/fa";
 
 export default function PatientCatigoryDoctors() {
   const [category, setCategory] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [expandedCards, setExpandedCards] = useState({}); // State to track expanded cards
 
   const getCategory = () => {
     axios
@@ -38,12 +41,19 @@ export default function PatientCatigoryDoctors() {
     getCategory();
   }, []);
 
+  const toggleCard = (index) => {
+    setExpandedCards((prevState) => ({
+      ...prevState,
+      [index]: !prevState[index], // Toggle the state of the card
+    }));
+  };
+
   return (
     <>
       <hr />
-      <div className="d-flex flex-column justify-content-center align-items-center p-4 mx-3 mt-5">
-        <h2 className="catDoc">Our Categories</h2>
-        <p className="catDoc">
+      <div className="text-white d-flex flex-column justify-content-center align-items-center p-4 mx-3 mt-5">
+        <h2 className={style.catDoc}>Our Categories</h2>
+        <p className={style.catDoc}>
           You Can Choose Your Favorite Doctor and Your Nearest Pharmacy From Our
           Categories
         </p>
@@ -65,36 +75,55 @@ export default function PatientCatigoryDoctors() {
             <div className="row">
               {category.map((categoryDoc, index) => (
                 <div key={index} className="col-lg-4 col-md-6 col-sm-12 my-3">
-                  <div className="DocCat-card rounded-1 py-4">
-                    <div className="d-flex align-items-start">
-                      <FaUser className="profile-icon mx-1" />
+                  <div
+                    className={`${style.DocCatCard} rounded-1 py-4`}
+                    onClick={() => toggleCard(index)}
+                    style={{
+                      cursor: "pointer",
+                      transition: "box-shadow 0.3s ease",
+                      boxShadow: expandedCards[index]
+                        ? "0 4px 8px rgba(0, 0, 0, 0.2)"
+                        : "0 2px 4px rgba(0, 0, 0, 0.1)",
+                    }}
+                  >
+                    <div className="text-black d-flex align-items-start">
+                      <FaUser className={`${style.profileIcon} mx-1`} />
                       <p>
-                        <strong>DOC: </strong>
+                        <strong>Doctor: </strong>
                         {categoryDoc.full_name || "N/A"}
                       </p>
                     </div>
-                    <div className="d-flex align-items-start">
-                      <FaStethoscope className="profile-icon mx-1" />
+                    <div className="text-black d-flex align-items-start">
+                      <FaStethoscope className={`${style.profileIcon} mx-1`} />
                       <p>
                         <strong>Specialization: </strong>
                         {categoryDoc.specialization || "N/A"}
                       </p>
                     </div>
-                    <div className="d-flex align-items-start">
-                      <FaEnvelope className="profile-icon mx-1" />
-                      <p>
-                        <strong>Email: </strong> {categoryDoc.email || "N/A"}
-                      </p>
-                    </div>
-                    <div className="d-flex align-items-start">
-                      <FaPhone className="profile-icon mx-1" />
-                      <p>
-                        <strong>Clink Number: </strong>{" "}
-                        {categoryDoc.phone_number || "N/A"}
-                      </p>
-                    </div>
-                    <div className="d-flex justify-content-end align-items-end">
-                      <FaHeart className="love" />
+                    {expandedCards[index] && ( // Show additional info if expanded
+                      <>
+                        <div className="text-black d-flex align-items-start">
+                          <FaEnvelope className={`${style.profileIcon} mx-1`} />
+                          <p>
+                            <strong>Email: </strong> {categoryDoc.email || "N/A"}
+                          </p>
+                        </div>
+                        <div className="text-black d-flex align-items-start">
+                          <FaPhone className={`${style.profileIcon} mx-1`} />
+                          <p>
+                            <strong>Clinic Number: </strong>{" "}
+                            {categoryDoc.phone_number || "N/A"}
+                          </p>
+                        </div>
+                      </>
+                    )}
+                    <div className="d-flex justify-content-between align-items-center">
+                      <FaHeart className={style.loveIcon} />
+                      {expandedCards[index] ? (
+                        <FaChevronUp className={style.chevronIcon} />
+                      ) : (
+                        <FaChevronDown className={style.chevronIcon} />
+                      )}
                     </div>
                   </div>
                 </div>
