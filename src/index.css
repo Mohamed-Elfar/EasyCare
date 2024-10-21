@@ -13,6 +13,16 @@
 h1 {
   color: var(--main-color);
 }
+hr {
+  color: var(--second-color);
+}
+.catDoc {
+  color: var(--light-color);
+}
+.bgSubMnuLink {
+  background-color: var(--main-color);
+}
+
 .loading {
   position: fixed;
   top: 0;
@@ -62,38 +72,27 @@ h1 {
   color: var(--second-color);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.active {
+  color: var(--main-color);
+  background-color: var(--second-colo);
+  padding: 5px;
+  border-radius: 5px;
+}
 
 /* @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap'); */
-    
+
 /* body{
     font-family: "Montserrat", sans-serif;
     font-weight: 600;
     font-style:normal;
   } */
-  /* .navbar-brand{
+/* .navbar-brand{
     color: #252B42;
     font-weight: 700;
     font-size: 24;
   }
    */
-  /* .nav-link{
+/* .nav-link{
    color: #737373 !important ;  
    font-weight: 700;
    font-size: 14;
@@ -108,7 +107,7 @@ h1 {
     color: white !important ;
     border-radius: 7%;
   } */
-  /* .register{
+/* .register{
     background-color: #FC724D !important;
     color: white !important ;
     border-radius: 7% !important;
