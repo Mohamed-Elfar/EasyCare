@@ -5,7 +5,9 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { userContext } from "../UserContext/UserContext";
-import { ThreeDots } from "react-loader-spinner";
+// import { ThreeDots } from "react-loader-spinner";
+import { Blocks } from "react-loader-spinner";
+
 
 export default function DoctorHome() {
   const { userToken } = useContext(userContext);
@@ -50,11 +52,20 @@ export default function DoctorHome() {
       }
 
       // Clear form fields except for patient_id
-      resetForm({ values: { patient_id: values.patient_id, medicine_name: '', dosage: '', instructions: '' } });
+      resetForm({
+        values: {
+          patient_id: values.patient_id,
+          medicine_name: "",
+          dosage: "",
+          instructions: "",
+        },
+      });
     } catch (error) {
       // Check if error response exists and set specific error messages if available
       if (error.response && error.response.data) {
-        setApiError(error.response.data.message || "An error occurred. Please try again.");
+        setApiError(
+          error.response.data.message || "An error occurred. Please try again."
+        );
       } else {
         setApiError("An error occurred. Please try again.");
       }
@@ -89,7 +100,9 @@ export default function DoctorHome() {
     <>
       <nav className="d-flex justify-content-end px-5 py-2">
         <div>
-          <NavLink to="/DoctorShowHistory" className="link2">Show Patient History</NavLink>
+          <NavLink to="/DoctorShowHistory" className="link2">
+            Show Patient History
+          </NavLink>
         </div>
         <div className="icon">
           <NavLink to="/doctorProfile" className="link">
@@ -184,18 +197,23 @@ export default function DoctorHome() {
             </div>
 
             {/* Submit Button */}
-            <button type="submit" className="btn btn-primary mt-3" disabled={isLoading}>
+            <button
+              type="submit"
+              className="btn btn-primary mt-3"
+              disabled={isLoading}
+            >
               {isLoading ? (
-                <ThreeDots
-                  visible={true}
-                  height="10"
-                  width="80"
-                  color="#091929"
-                  radius="9"
-                  ariaLabel="three-dots-loading"
-                />
+                <Blocks
+                height="28"
+                width="40"
+                color="white"
+                ariaLabel="blocks-loading"
+                wrapperStyle={{}}
+                wrapperClass="blocks-wrapper"
+                visible={true}
+              />
               ) : (
-                'Add Prescription'
+                "Add Prescription"
               )}
             </button>
           </form>
