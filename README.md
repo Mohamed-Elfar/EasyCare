@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+# EasyCare
+EasyCare React Project
+=======
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
@@ -35,3 +39,4 @@ let's Start button >>>
 
 PatientCategoryDoctors: contain all DOCs which user can chooses from them to take his process
 PatientCategoryPharmacy: contain all nearest Pharmacies which user can chooses from to take his order
+>>>>>>> a0120b26558b0533cffdf1ca820d3f5a09d3f518
