@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
+import SplashScreen from "./components/SplashScreen/SplashScreen";
 import Layout from "./components/Layout/Layout";
 import Home from "./components/Home/Home";
 import PatientRegister from "./components/PatientRegister/PatientRegister";
@@ -19,6 +20,7 @@ import PatientHome from "./components/PatientHome/PatientHome";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 function App() {
   let routers = createBrowserRouter([
+    { index: true, path: "splash", element: <SplashScreen /> },
     {
       path: "/",
       element: <Layout />,
