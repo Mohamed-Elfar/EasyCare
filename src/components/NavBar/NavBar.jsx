@@ -6,17 +6,29 @@ import imageL from "../../assets/images/imageLogo.png";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { userContext } from "../UserContext/UserContext";
+import { FaUser } from "react-icons/fa";
 
 export default function NavBar() {
   const { userToken, setUserToken } = useContext(userContext);
+  const { userType, setUserType } = useContext(userContext);
   let navigate = useNavigate();
 
   async function logout() {
     localStorage.removeItem("userToken");
+    localStorage.removeItem("userType");
     setUserToken(null);
+    setUserType(null);
     navigate("/login");
   }
-
+  
+  const profileLink =
+    userType === "patient"
+      ? "/patientHome"
+      : userType === "doctor"
+      ? "/doctorProfile"
+      : userType === "pharmacist"
+      ? "/pharmacistHome"
+      : "/";
   return (
     <>
       <Navbar bg="light" expand="lg">
@@ -75,6 +87,13 @@ export default function NavBar() {
                       </Link>
                     </li>
                   </>
+                )}
+                {userToken && (
+                  <li className=" d-flex align-items-center">
+                    <Link to={profileLink} onClick={() => console.log(userType)} className="nav-profile-link">
+                      <FaUser size={24} /> {/* Profile icon */}
+                    </Link>
+                  </li>
                 )}
               </ul>
             </Nav>

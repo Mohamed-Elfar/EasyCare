@@ -51,8 +51,8 @@ export default function PatientCatigoryPharmacies() {
     <>
       <hr />
       <div className="text-center p-4">
-        <h2 className="catDoc">Our Categories</h2>
-        <p className="catDoc">
+        <h2 className="catDoc text-black">Our Categories</h2>
+        <p className="catDoc text-black">
           You Can Choose Your Favorite Pharmacist and Nearest Pharmacy From Our Categories
         </p>
       </div>

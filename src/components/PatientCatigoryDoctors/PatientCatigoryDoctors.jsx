@@ -51,7 +51,7 @@ export default function PatientCatigoryDoctors() {
   return (
     <>
       <hr />
-      <div className="text-white d-flex flex-column justify-content-center align-items-center p-4 mx-3 mt-5">
+      <div className="text-black d-flex flex-column justify-content-center align-items-center p-4 mx-3 mt-5">
         <h2 className={style.catDoc}>Our Categories</h2>
         <p className={style.catDoc}>
           You Can Choose Your Favorite Doctor and Your Nearest Pharmacy From Our
@@ -86,7 +86,7 @@ export default function PatientCatigoryDoctors() {
                         : "0 2px 4px rgba(0, 0, 0, 0.1)",
                     }}
                   >
-                    <div className="text-black d-flex align-items-start">
+                    <div className="text-blackd-flex align-items-start">
                       <FaUser className={`${style.profileIcon} mx-1`} />
                       <p>
                         <strong>Doctor: </strong>
@@ -102,13 +102,13 @@ export default function PatientCatigoryDoctors() {
                     </div>
                     {expandedCards[index] && ( // Show additional info if expanded
                       <>
-                        <div className="text-black d-flex align-items-start">
+                        <div className="d-flex align-items-start">
                           <FaEnvelope className={`${style.profileIcon} mx-1`} />
                           <p>
                             <strong>Email: </strong> {categoryDoc.email || "N/A"}
                           </p>
                         </div>
-                        <div className="text-black d-flex align-items-start">
+                        <div className="d-flex align-items-start">
                           <FaPhone className={`${style.profileIcon} mx-1`} />
                           <p>
                             <strong>Clinic Number: </strong>{" "}

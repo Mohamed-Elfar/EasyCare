@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import axios from "axios";
 import {
@@ -17,7 +17,6 @@ import "./PatientHome.css";
 import Loading from "../Loading/Loading";
 import { userContext } from "../UserContext/UserContext";
 
-
 const Profile = () => {
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -25,7 +24,6 @@ const Profile = () => {
   const { userToken, setUserToken } = useContext(userContext);
   useEffect(() => {
     const fetchPatientProfile = async () => {
-      
       try {
         const response = await axios.get(
           "https://grackle-notable-hardly.ngrok-free.app/api/profile/",
@@ -120,8 +118,8 @@ const Profile = () => {
             <FaNotesMedical className="profile-icon" />
             <p>
               <strong>Allergies:</strong>{" "}
-              {profile.allergies && profile.allergies.trim() !== ""
-                ? profile.allergies
+              {profile.allergies && profile.allergies.length > 0
+                ? profile.allergies.join(", ")
                 : "None"}
             </p>
           </div>
@@ -140,7 +138,7 @@ const Profile = () => {
           <li className="mx-3">
             <NavLink
               className="text-decoration-none text-white subMnuLink"
-              to={"patientCategoryDoctors"}
+              to={"/patientCategoryDoctors"}
             >
               All Doctors
             </NavLink>
@@ -148,7 +146,7 @@ const Profile = () => {
           <li className="mx-3">
             <NavLink
               className="text-decoration-none text-white subMnuLink"
-              to={"patientCatigoryPharmacies"}
+              to={"/patientCatigoryPharmacies"}
             >
               All Pharmacies
             </NavLink>

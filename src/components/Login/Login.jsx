@@ -11,6 +11,7 @@ export default function Login() {
   let navigate = useNavigate();
   let [apiError, setError] = useState("");
   let { setUserToken } = useContext(userContext);
+  let { setUserType } = useContext(userContext);
   const [isLoading, setIsLoading] = useState(false);
 
   async function handleRegister(formsData) {
@@ -23,12 +24,14 @@ export default function Login() {
       .then((response) => {
         setIsLoading(false);
         localStorage.setItem("userToken", response.data.access);
+        localStorage.setItem("userToken", response.data.user_type);
         setUserToken(response.data.access);
+        setUserType( response.data.user_type);
 
         response.data.user_type === "pharmacist"
           ? navigate("/pharmacistHome")
           : response.data.user_type === "doctor"
-          ? navigate("/doctorHome")
+          ? navigate("/doctorProfile")
           : navigate("/patientHome");
       })
       .catch((error) => {

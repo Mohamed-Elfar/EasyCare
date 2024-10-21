@@ -20,8 +20,10 @@ import PatientHome from "./components/PatientHome/PatientHome";
 import PatientCatigoryDoctors from "./components/PatientCatigoryDoctors/PatientCatigoryDoctors";
 import PatientCatigoryPharmacies from "./components/PatientCatigoryPharmacies/PatientCatigoryPharmacies";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import DoctorShowHistory from "./components/DoctorShowHistory/DoctorShowHistory";
+import DoctorProfile from "./components/DoctorProfile/DoctorProfile";
 function App() {
-  let routers = createBrowserRouter([
+  const routers = createBrowserRouter([
     { index: true, path: "splash", element: <SplashScreen /> },
     {
       path: "/",
@@ -57,7 +59,6 @@ function App() {
           path: "pharmacistHome",
           element: (
             <ProtectedRoute>
-              {" "}
               <PharmacistHome />
             </ProtectedRoute>
           ),
@@ -71,24 +72,37 @@ function App() {
           ),
         },
         {
+          path: "doctorProfile",
+          element: (
+            <ProtectedRoute>
+              <DoctorProfile />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: "DoctorShowHistory",
+          element: (
+            <ProtectedRoute>
+              <DoctorShowHistory />
+            </ProtectedRoute>
+          ),
+        },
+        {
           path: "patientHome",
           element: (
             <ProtectedRoute>
               <PatientHome />
             </ProtectedRoute>
           ),
-          children: [
-            {
-              path: "patientCategoryDoctors",
-              element: <PatientCatigoryDoctors />,
-            },
-            {
-              path: "patientCatigoryPharmacies",
-              element: <PatientCatigoryPharmacies />,
-            },
-          ],
         },
-
+        {
+          path: "patientCategoryDoctors",
+          element: <PatientCatigoryDoctors />,
+        },
+        {
+          path: "patientCatigoryPharmacies",
+          element: <PatientCatigoryPharmacies />,
+        },
         { path: "forgotPassword", element: <ForgetPassword /> },
         { path: "otp", element: <Otp /> },
         { path: "contact", element: <Contact /> },
@@ -99,12 +113,11 @@ function App() {
       ],
     },
   ]);
+
   return (
-    <>
-      <UserContextProvider>
-        <RouterProvider router={routers}></RouterProvider>
-      </UserContextProvider>
-    </>
+    <UserContextProvider>
+      <RouterProvider router={routers} />
+    </UserContextProvider>
   );
 }
 
