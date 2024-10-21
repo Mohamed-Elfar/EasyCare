@@ -5,9 +5,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { userContext } from "../UserContext/UserContext";
-// import { ThreeDots } from "react-loader-spinner";
 import { Blocks } from "react-loader-spinner";
-
 
 export default function DoctorHome() {
   const { userToken } = useContext(userContext);
@@ -15,7 +13,6 @@ export default function DoctorHome() {
   const [apiMessage, setApiMessage] = useState(null);
   const [apiError, setApiError] = useState(null);
 
-  // Validation Schema
   const validationSchema = Yup.object({
     patient_id: Yup.string()
       .length(14, "Patient ID must be exactly 14 characters")
@@ -25,10 +22,9 @@ export default function DoctorHome() {
     instructions: Yup.string().required("Instructions are required"),
   });
 
-  // Function to handle form submission
   const handleSubmit = async (values, { resetForm }) => {
-    setIsLoading(true); // Start loading
-    setApiMessage(null); // Reset previous messages
+    setIsLoading(true);
+    setApiMessage(null);
     setApiError(null);
 
     try {
@@ -51,7 +47,6 @@ export default function DoctorHome() {
         setApiMessage(response.data.message);
       }
 
-      // Clear form fields except for patient_id
       resetForm({
         values: {
           patient_id: values.patient_id,
@@ -61,7 +56,6 @@ export default function DoctorHome() {
         },
       });
     } catch (error) {
-      // Check if error response exists and set specific error messages if available
       if (error.response && error.response.data) {
         setApiError(
           error.response.data.message || "An error occurred. Please try again."
@@ -71,7 +65,7 @@ export default function DoctorHome() {
       }
       console.error(error);
     } finally {
-      setIsLoading(false); // Stop loading
+      setIsLoading(false);
     }
   };
 
@@ -86,12 +80,11 @@ export default function DoctorHome() {
     onSubmit: handleSubmit,
   });
 
-  // Reset messages after a period
   useEffect(() => {
     const timer = setTimeout(() => {
       setApiMessage(null);
       setApiError(null);
-    }, 5000); // Clear messages after 5 seconds
+    }, 5000);
 
     return () => clearTimeout(timer);
   }, [apiMessage, apiError]);
@@ -204,14 +197,14 @@ export default function DoctorHome() {
             >
               {isLoading ? (
                 <Blocks
-                height="28"
-                width="40"
-                color="white"
-                ariaLabel="blocks-loading"
-                wrapperStyle={{}}
-                wrapperClass="blocks-wrapper"
-                visible={true}
-              />
+                  height="28"
+                  width="40"
+                  color="white"
+                  ariaLabel="blocks-loading"
+                  wrapperStyle={{}}
+                  wrapperClass="blocks-wrapper"
+                  visible={true}
+                />
               ) : (
                 "Add Prescription"
               )}

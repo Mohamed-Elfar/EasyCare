@@ -48,11 +48,7 @@ function App() {
         { path: "patientRegister", element: <PatientRegister /> },
         {
           path: "doctors",
-          element: (
-            <ProtectedRoute>
-              <Doctors />
-            </ProtectedRoute>
-          ),
+          element: <Doctors />,
         },
         { path: "pharmacyRegister", element: <PharmacyRegister /> },
         {
