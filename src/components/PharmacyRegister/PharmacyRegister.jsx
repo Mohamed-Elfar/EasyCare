@@ -6,7 +6,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { Blocks } from "react-loader-spinner";
-import pharmacyImage from "../../assets/images/pharmacyImage.png"
+import pharmacyImage from "../../assets/images/pharmacyImage.png";
 export default function PharmacyRegister() {
   const [apiError, setApiError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -86,7 +86,7 @@ export default function PharmacyRegister() {
   });
   return (
     <>
-       <section className="bg-light py-3 py-md-5">
+      <section className="bg-light py-3 py-md-5">
         <div className="container">
           <div className="row justify-content-evenly px-4">
             <div className="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4 w-50">

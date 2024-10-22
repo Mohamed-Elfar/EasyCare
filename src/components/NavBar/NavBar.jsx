@@ -3,7 +3,7 @@ import { Navbar, Nav, Container, Button } from "react-bootstrap";
 import { Row, Col } from "react-bootstrap";
 import "./NavBar.css";
 import imageL from "../../assets/images/imageLogo.png";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { userContext } from "../UserContext/UserContext";
 import { FaUser } from "react-icons/fa";
@@ -20,7 +20,7 @@ export default function NavBar() {
     setUserType(null);
     navigate("/login");
   }
-  
+
   const profileLink =
     userType === "patient"
       ? "/patientHome"
@@ -53,15 +53,31 @@ export default function NavBar() {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ml-auto ms-auto">
               <ul className="navbar-nav mx-auto signUP">
-                <li className="nav-item">
-                  <Link
-                    className="nav-link custom-nav-link px-3 py-3"
-                    aria-current="page"
-                    to={"/role"}
-                  >
-                    JOIN US
-                  </Link>
-                </li>
+                {userToken !== null ? (
+                  <>
+                    <li className="nav-item">
+                      <Link
+                        to={"/contact"}
+                        className="nav-link custom-nav-link px-3 py-3"
+                      >
+                        Contact us
+                      </Link>
+                    </li>
+                  </>
+                ) : (
+                  <>
+                    <li className="nav-item">
+                      <Link
+                        className="nav-link custom-nav-link px-3 py-3"
+                        aria-current="page"
+                        to={"/role"}
+                      >
+                        JOIN US
+                      </Link>
+                    </li>
+                  </>
+                )}
+
                 {userToken !== null ? (
                   <>
                     <li className="nav-item">
@@ -88,9 +104,14 @@ export default function NavBar() {
                     </li>
                   </>
                 )}
+
                 {userToken && (
                   <li className=" d-flex align-items-center">
-                    <Link to={profileLink} onClick={() => console.log(userType)} className="nav-profile-link">
+                    <Link
+                      to={profileLink}
+                      onClick={() => console.log(userType)}
+                      className="nav-profile-link"
+                    >
                       <FaUser size={24} /> {/* Profile icon */}
                     </Link>
                   </li>
