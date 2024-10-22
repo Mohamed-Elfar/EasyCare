@@ -10,7 +10,8 @@
   --font-family: "Encode Sans Expanded", sans-serif;
   --violet-color: #c8acd6;
 }
-h1 {
+h1,
+h3 {
   color: var(--main-color);
 }
 hr {

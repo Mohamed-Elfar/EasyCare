@@ -6,7 +6,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { Blocks } from "react-loader-spinner";
-import image from "../../assets/images/patient.jpg";
+import pharmacyImage from "../../assets/images/pharmacyImage.png";
 export default function PharmacyRegister() {
   const [apiError, setApiError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -88,16 +88,16 @@ export default function PharmacyRegister() {
     <>
       <section className="bg-light py-3 py-md-5">
         <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
+          <div className="row justify-content-evenly px-4">
+            <div className="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4 w-50">
               <div className="card border border-light-subtle rounded-3 shadow-sm">
                 <div className="card-body p-3 p-md-4 p-xl-5">
                   <div className="text-center mb-3">
                     {/* Logo placeholder */}
                   </div>
-                  <h2 className="fs-6 fw-normal text-center text-secondary mb-4">
-                    Enter your details to register
-                  </h2>
+
+                  <h3 className="fw-bold mb-4">Pharmacist Enrollment</h3>
+
                   {apiError && <div className="text-danger">{apiError}</div>}
                   <form onSubmit={formik.handleSubmit} action="#!">
                     <div className="row gy-2 overflow-hidden">
@@ -435,9 +435,9 @@ export default function PharmacyRegister() {
             </div>
 
             {/* Image */}
-            <div className="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
+            <div className="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4 my-5 w-50">
               <div className="RegisterImage">
-                <img src={image} alt="register page" />
+                <img src={pharmacyImage} alt="register page" />
               </div>
             </div>
           </div>
