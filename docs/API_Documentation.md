@@ -13,7 +13,8 @@ https://grackle-notable-hardly.ngrok-free.app/api/
 
 **Request Body:**
 **For Patient Registration:**
-```json
+
+````json
 {
   "full_name": "Emily Davis",
   "email": "patient@example.com",
@@ -202,3 +203,23 @@ Expected Response:
   },
   ...
 ]
+10. ContactUs {#contact-us}
+- **Endpoint:** POST /contact-us/
+- **Purpose:**Allow Authenticated user to contact US:
+{
+  "Authorization": "Bearer <access_token>",
+  "ngrok-skip-browser-warning": "true"
+}
+Request Body:
+{
+    "name": "Emily Davis",
+    "national_id": "12345678901234",
+    "message": "I would like to inquire about my prescription."
+}
+
+Expected Response:
+{
+	"message": "Your message has been received and emailed."
+}
+
+````

@@ -1,4 +1,3 @@
-
 ### Update `index.md` Links
 
 Now, make sure to update your `index.md` file to include links to the newly added sections:
@@ -18,7 +17,9 @@ Welcome to the API documentation. Below are links to different sections of the A
 - [Add Prescription API](API_Documentation#add-prescription)
 - [Doctors Categories API](API_Documentation#doctors-categories)
 - [Pharmacists Categories API](API_Documentation#pharmacists-categories)
+- [ContactUs API](API_Documentation#contact-us)
 
 ## Getting Started
 
 This documentation will help you understand how to interact with the API, including endpoints, request formats, and expected responses.
+```
