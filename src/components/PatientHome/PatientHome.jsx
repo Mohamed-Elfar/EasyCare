@@ -35,6 +35,7 @@ const Profile = () => {
           }
         );
         setProfile(response.data);
+        console.log(response.data);
         setLoading(false);
       } catch (err) {
         setError(err);
@@ -118,8 +119,12 @@ const Profile = () => {
             <FaNotesMedical className="profile-icon" />
             <p>
               <strong>Allergies:</strong>{" "}
-              {profile.allergies && profile.allergies.length > 0
-                ? profile.allergies.join(", ")
+              {Array.isArray(profile.allergies)
+                ? profile.allergies.length > 0
+                  ? profile.allergies.join(", ")
+                  : "None"
+                : profile.allergies
+                ? profile.allergies
                 : "None"}
             </p>
           </div>
