@@ -51,7 +51,7 @@ export default function NavBar() {
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="ml-auto ms-auto">
+            <Nav className="ml-auto mx-auto">
               <ul className="navbar-nav mx-auto signUP">
                 {userToken !== null ? (
                   <>
@@ -107,6 +107,23 @@ export default function NavBar() {
                         Contact us
                       </Link>
                     </li>
+                    <li className=" d-flex align-items-center">
+                      <Link
+                        to={profileLink}
+                        onClick={() => console.log(userType)}
+                        className="nav-profile-link text-black custom-nav-link px-1 mx-1"
+                      >
+                        <FaUser size={22} />
+                      </Link>
+                    </li>
+                  </>
+                ) :""}
+              </ul>
+            </Nav>
+            <Nav className="ml-auto ms-auto">
+              <ul className="navbar-nav mx-auto signUP">
+                {userToken !== null ? (
+                  <>
                     <li className="nav-item">
                       <Link
                         onClick={() => {
@@ -115,15 +132,6 @@ export default function NavBar() {
                         className="nav-link custom-nav-link px-3 py-3"
                       >
                         Logout
-                      </Link>
-                    </li>
-                    <li className=" d-flex align-items-center">
-                      <Link
-                        to={profileLink}
-                        onClick={() => console.log(userType)}
-                        className="nav-profile-link text-bl"
-                      >
-                        <FaUser size={22} />
                       </Link>
                     </li>
                   </>
@@ -149,6 +157,30 @@ export default function NavBar() {
                     </li>
                   </>
                 )}
+                <li className=" d-flex align-items-center">
+                  <Link
+                    to={"https://twitter.com"}
+                    className="nav-profile-link custom-nav-link px-1 mx-1"
+                  >
+                    <i className="fa-solid fa-brands fa-twitter"></i>
+                  </Link>
+                </li>
+                <li className=" d-flex align-items-center">
+                  <Link
+                    to={"https://facebook.com"}
+                    className="nav-profile-link custom-nav-link px-1"
+                  >
+                    <i className="fa-solid fa-brands fa-facebook"></i>
+                  </Link>
+                </li>
+                <li className=" d-flex align-items-center">
+                  <Link
+                    to={"https://instagram.com"}
+                    className="nav-profile-link custom-nav-link px-1 mx-1"
+                  >
+                    <i className="fa-solid fa-brands fa-instagram"></i>
+                  </Link>
+                </li>
               </ul>
             </Nav>
           </Navbar.Collapse>
