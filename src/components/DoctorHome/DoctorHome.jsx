@@ -1,5 +1,3 @@
-import { NavLink } from "react-router-dom";
-import { FaUser } from "react-icons/fa";
 import React, { useState, useContext, useEffect } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -91,19 +89,6 @@ export default function DoctorHome() {
 
   return (
     <>
-      <nav className="d-flex justify-content-end px-5 py-2">
-        <div>
-          <NavLink to="/DoctorShowHistory" className="link2">
-            Show Patient History
-          </NavLink>
-        </div>
-        <div className="icon">
-          <NavLink to="/doctorProfile" className="link">
-            <FaUser className="profile-icon mx-2" />
-          </NavLink>
-        </div>
-      </nav>
-
       <div className="addForm d-flex flex-column justify-content-center align-items-center text-center">
         <h1>Add Prescription</h1>
         {apiMessage && (

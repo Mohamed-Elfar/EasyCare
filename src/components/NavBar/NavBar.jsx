@@ -45,7 +45,7 @@ export default function NavBar() {
                 />
               </Col>
               <Col xs={12} md={10}>
-                <h1 className="brand m-3">EasyCare</h1> {/* العنوان */}
+                <h1 className="brand m-3">EasyCare</h1> {/* Title */}
               </Col>
             </Row>
           </Navbar.Brand>
@@ -55,12 +55,75 @@ export default function NavBar() {
               <ul className="navbar-nav mx-auto signUP">
                 {userToken !== null ? (
                   <>
+                    {userType === "patient" ? (
+                      <>
+                        <li className="nav-item d-flex align-items-center">
+                          <Link
+                            className=" text-decoration-none subMnuLink custom-nav-link nav-link"
+                            to={"/patientCategoryDoctors"}
+                          >
+                            All Doctors
+                          </Link>
+                        </li>
+                        <li className="nav-item d-flex align-items-center">
+                          <Link
+                            className="text-decoration-none subMnuLink custom-nav-link nav-link"
+                            to={"/patientCatigoryPharmacies"}
+                          >
+                            All Pharmacies
+                          </Link>
+                        </li>
+                      </>
+                    ) : (
+                      ""
+                    )}
+                    {userType === "doctor" ? (
+                      <>
+                        <li className="nav-item d-flex align-items-center">
+                          <Link
+                            className=" text-decoration-none subMnuLink custom-nav-link nav-link"
+                            to={"/doctorHome"}
+                          >
+                            Add Patient Prescription
+                          </Link>
+                        </li>
+                        <li className="nav-item d-flex align-items-center">
+                          <Link
+                            className="text-decoration-none subMnuLink custom-nav-link nav-link"
+                            to={"/DoctorShowHistory"}
+                          >
+                            Show Patient History
+                          </Link>
+                        </li>
+                      </>
+                    ) : (
+                      ""
+                    )}
                     <li className="nav-item">
                       <Link
                         to={"/contact"}
                         className="nav-link custom-nav-link px-3 py-3"
                       >
                         Contact us
+                      </Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link
+                        onClick={() => {
+                          logout();
+                        }}
+                        className="nav-link custom-nav-link px-3 py-3"
+                      >
+                        Logout
+                      </Link>
+                    </li>
+                    <li className=" d-flex align-items-center">
+                      <Link
+                        to={profileLink}
+                        onClick={() => console.log(userType)}
+                        className="nav-profile-link text-bl"
+                      >
+                        <FaUser size={22} />
                       </Link>
                     </li>
                   </>
@@ -75,24 +138,6 @@ export default function NavBar() {
                         JOIN US
                       </Link>
                     </li>
-                  </>
-                )}
-
-                {userToken !== null ? (
-                  <>
-                    <li className="nav-item">
-                      <Link
-                        onClick={() => {
-                          logout();
-                        }}
-                        className="nav-link custom-nav-link px-3 py-3"
-                      >
-                        Logout
-                      </Link>
-                    </li>
-                  </>
-                ) : (
-                  <>
                     <li className="nav-item">
                       <Link
                         className="nav-link custom-nav-link py-3"
@@ -103,18 +148,6 @@ export default function NavBar() {
                       </Link>
                     </li>
                   </>
-                )}
-
-                {userToken && (
-                  <li className=" d-flex align-items-center">
-                    <Link
-                      to={profileLink}
-                      onClick={() => console.log(userType)}
-                      className="nav-profile-link"
-                    >
-                      <FaUser size={24} /> {/* Profile icon */}
-                    </Link>
-                  </li>
                 )}
               </ul>
             </Nav>

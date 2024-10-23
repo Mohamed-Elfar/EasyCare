@@ -35,7 +35,6 @@ const Profile = () => {
           }
         );
         setProfile(response.data);
-        console.log(response.data);
         setLoading(false);
       } catch (err) {
         setError(err);
@@ -137,30 +136,6 @@ const Profile = () => {
           </div>
         </div>
       )}
-      {/* Categories pages */}
-      <div className="text-center bgSubMnuLink text-warning py-5 rounded-2 my-5">
-        <ul className="d-flex flex-wrap justify-content-center list-unstyled">
-          <li className="mx-3">
-            <NavLink
-              className="text-decoration-none text-white subMnuLink"
-              to={"/patientCategoryDoctors"}
-            >
-              All Doctors
-            </NavLink>
-          </li>
-          <li className="mx-3">
-            <NavLink
-              className="text-decoration-none text-white subMnuLink"
-              to={"/patientCatigoryPharmacies"}
-            >
-              All Pharmacies
-            </NavLink>
-          </li>
-        </ul>
-        <div className="d-flex flex-wrap justify-content-center py-4 my-2">
-          <Outlet />
-        </div>
-      </div>
     </div>
   );
 };
