@@ -3,24 +3,31 @@ import { useFormik } from "formik";
 import axios from "axios";
 import style from "./ForgetPassword.module.css";
 import { useNavigate } from "react-router-dom";
+import { Blocks } from "react-loader-spinner";
 
 export default function ForgetPassword() {
   const [apiMessage, setApiMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
   let navigate = useNavigate();
 
   const handleSendOtp = async (formData) => {
+    setIsLoading(true);
     try {
       const response = await axios.post(
         "https://grackle-notable-hardly.ngrok-free.app/api/request-password-reset/",
         formData
       );
       setApiMessage("OTP has been sent to your email.");
+      setIsLoading(false);
       navigate("/otp", { state: { email: formik.values.email } });
     } catch (error) {
       console.error(error.response?.data);
       const errorMessage =
         error.response?.data?.error || "An error occurred. Please try again.";
       setApiMessage(errorMessage);
+      setIsLoading(false);
+
     }
   };
 
@@ -57,10 +64,25 @@ export default function ForgetPassword() {
             required
           />
         </div>
+        {isLoading ? (
+          <button type="submit" className={style.submitBtn}>
 
-        <button type="submit" className={style.submitBtn}>
+                <Blocks
+                  height="28"
+                  width="40"
+                  color="white"
+                  ariaLabel="blocks-loading"
+                  wrapperStyle={{}}
+                  wrapperClass="blocks-wrapper"
+                  visible={true}
+                />
+              </button>
+            ) : (
+<button type="submit" className={style.submitBtn}>
           Send OTP
         </button>
+            )}
+        
       </form>
     </div>
   );
