@@ -226,7 +226,7 @@ span {
 }
 
 .section-header:hover::after {
-  width: 100px;
+  width: 150px;
 }
 
 /* Animation for header */

@@ -204,7 +204,7 @@ export default function Home() {
       </Container>
       {/* FAQ Section */}
       <Container className="my-5 ">
-        <h2 className="text-center mb-4">Frequently Asked Questions</h2>
+        <h2 className="text-center mb-4 section-header">Frequently Asked Questions</h2>
         <Accordion>
           <Accordion.Item eventKey="0">
             <Accordion.Header>How can I book an appointment?</Accordion.Header>
