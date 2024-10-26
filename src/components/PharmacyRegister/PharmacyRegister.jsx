@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { Blocks } from "react-loader-spinner";
 import pharmacyImage from "../../assets/images/pharmacyImage.png";
+import { Helmet } from "react-helmet";
+
 export default function PharmacyRegister() {
   const [apiError, setApiError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -86,6 +88,10 @@ export default function PharmacyRegister() {
   });
   return (
     <>
+      <Helmet>
+        <title>Pharmacist Register</title>
+        <meta name="description" content="easy care Pharmacist register page" />
+      </Helmet>
       <section className="bg-light py-3 py-md-5">
         <div className="container">
           <div className="row justify-content-evenly px-4">

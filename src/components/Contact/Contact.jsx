@@ -3,6 +3,7 @@ import axios from "axios";
 import style from "./Contact.module.css";
 import { Blocks } from "react-loader-spinner";
 import { userContext } from "../UserContext/UserContext";
+import { Helmet } from "react-helmet";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -47,7 +48,7 @@ export default function Contact() {
     } finally {
       setFormData({
         name: "",
-        national_id: "", 
+        national_id: "",
         message: "",
       });
       setIsLoading(false);
@@ -60,73 +61,79 @@ export default function Contact() {
       setApiError(null);
     }, 5000);
 
-    return () => clearTimeout(timer); 
-  }, [apiMessage, apiError]); 
+    return () => clearTimeout(timer);
+  }, [apiMessage, apiError]);
 
   return (
-    <div className={style.contactFormContainer}>
-      <h2>Contact Us</h2>
-      {apiMessage && (
-        <div className="alert alert-success" role="alert">
-          {apiMessage}
-        </div>
-      )}
-      {apiError && ( 
-        <div className="alert alert-danger" role="alert">
-          {apiError}
-        </div>
-      )}
-      <form className={style.contactForm} onSubmit={handleSubmit}>
-        <div className={style.formGroup}>
-          <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className={style.formGroup}>
-          <label htmlFor="national_id">National ID</label>
-          <input
-            type="text"
-            id="national_id"
-            name="national_id"
-            value={formData.national_id}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className={style.formGroup}>
-          <label htmlFor="message">Message</label>
-          <textarea
-            id="message"
-            name="message"
-            value={formData.message}
-            onChange={handleChange}
-            required
-          ></textarea>
-        </div>
-        <button
-          type="submit"
-          className={style.submitButton}
-          disabled={isLoading}
-        >
-          {isLoading ? (
-            <Blocks
-              height="28"
-              width="40"
-              color="white"
-              ariaLabel="blocks-loading"
-              visible={true}
+    <>
+      <Helmet>
+        <title>Pharmacist Home</title>
+        <meta name="description" content="easy care Pharmacist Home" />
+      </Helmet>
+      <div className={style.contactFormContainer}>
+        <h2>Contact Us</h2>
+        {apiMessage && (
+          <div className="alert alert-success" role="alert">
+            {apiMessage}
+          </div>
+        )}
+        {apiError && (
+          <div className="alert alert-danger" role="alert">
+            {apiError}
+          </div>
+        )}
+        <form className={style.contactForm} onSubmit={handleSubmit}>
+          <div className={style.formGroup}>
+            <label htmlFor="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
             />
-          ) : (
-            "Submit"
-          )}
-        </button>
-      </form>
-    </div>
+          </div>
+          <div className={style.formGroup}>
+            <label htmlFor="national_id">National ID</label>
+            <input
+              type="text"
+              id="national_id"
+              name="national_id"
+              value={formData.national_id}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className={style.formGroup}>
+            <label htmlFor="message">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              required
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            className={style.submitButton}
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <Blocks
+                height="28"
+                width="40"
+                color="white"
+                ariaLabel="blocks-loading"
+                visible={true}
+              />
+            ) : (
+              "Submit"
+            )}
+          </button>
+        </form>
+      </div>
+    </>
   );
 }

@@ -11,13 +11,13 @@ import {
   FaCaretDown,
   FaCaretUp,
 } from "react-icons/fa";
-import "bootstrap/dist/css/bootstrap.min.css"; // Bootstrap for styling
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Helmet } from "react-helmet";
 
-// All category that patient will choose
 export default function PatientCatigoryPharmacies() {
   const [category, setCategory] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [expandedCardIndex, setExpandedCardIndex] = useState(null); // To track the expanded card
+  const [expandedCardIndex, setExpandedCardIndex] = useState(null);
 
   const getCategory = () => {
     axios
@@ -26,7 +26,7 @@ export default function PatientCatigoryPharmacies() {
         {
           headers: {
             "ngrok-skip-browser-warning": "true",
-          }
+          },
         }
       )
       .then((response) => {
@@ -49,11 +49,19 @@ export default function PatientCatigoryPharmacies() {
 
   return (
     <>
+      <Helmet>
+        <title>Pharmacies'sCategory</title>
+        <meta
+          name="description"
+          content="easy care Pharmacies's Category page"
+        />
+      </Helmet>
       <hr />
       <div className="text-center p-4">
         <h2 className="catDoc text-black">Our Categories</h2>
         <p className="catDoc text-black">
-          You Can Choose Your Favorite Pharmacist and Nearest Pharmacy From Our Categories
+          You Can Choose Your Favorite Pharmacist and Nearest Pharmacy From Our
+          Categories
         </p>
       </div>
 
@@ -74,7 +82,9 @@ export default function PatientCatigoryPharmacies() {
             {category.map((categoryPharm, index) => (
               <div key={index} className="col-lg-4 col-md-6 my-3">
                 <div
-                  className={`card shadow-sm ${expandedCardIndex === index ? "expanded-card" : ""}`}
+                  className={`card shadow-sm ${
+                    expandedCardIndex === index ? "expanded-card" : ""
+                  }`}
                   onClick={() => toggleCardExpansion(index)}
                   style={{ cursor: "pointer" }}
                 >
@@ -89,7 +99,8 @@ export default function PatientCatigoryPharmacies() {
                     <div className="d-flex align-items-center mt-2">
                       <FaStethoscope className="profile-icon mx-2" />
                       <p className="card-text">
-                        <strong>Pharmacy: </strong> {categoryPharm.pharmacy_name || "N/A"}
+                        <strong>Pharmacy: </strong>{" "}
+                        {categoryPharm.pharmacy_name || "N/A"}
                       </p>
                     </div>
 
@@ -98,21 +109,24 @@ export default function PatientCatigoryPharmacies() {
                         <div className="d-flex align-items-center">
                           <FaAddressBook className="profile-icon mx-2" />
                           <p className="card-text">
-                            <strong>Address: </strong> {categoryPharm.pharmacy_address || "N/A"}
+                            <strong>Address: </strong>{" "}
+                            {categoryPharm.pharmacy_address || "N/A"}
                           </p>
                         </div>
 
                         <div className="d-flex align-items-center">
                           <FaPhone className="profile-icon mx-2" />
                           <p className="card-text">
-                            <strong>Phone: </strong> {categoryPharm.phone_number || "N/A"}
+                            <strong>Phone: </strong>{" "}
+                            {categoryPharm.phone_number || "N/A"}
                           </p>
                         </div>
 
                         <div className="d-flex align-items-center">
                           <FaEnvelope className="profile-icon mx-2" />
                           <p className="card-text">
-                            <strong>Email: </strong> {categoryPharm.email || "N/A"}
+                            <strong>Email: </strong>{" "}
+                            {categoryPharm.email || "N/A"}
                           </p>
                         </div>
                       </>

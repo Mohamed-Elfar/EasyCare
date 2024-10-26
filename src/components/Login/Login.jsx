@@ -6,6 +6,7 @@ import axios from "axios";
 import { NavLink, useNavigate } from "react-router-dom";
 import { userContext } from "../UserContext/UserContext";
 import { Blocks } from "react-loader-spinner";
+import { Helmet } from "react-helmet";
 
 export default function Login() {
   let navigate = useNavigate();
@@ -26,7 +27,7 @@ export default function Login() {
         localStorage.setItem("userToken", response.data.access);
         localStorage.setItem("userToken", response.data.user_type);
         setUserToken(response.data.access);
-        setUserType( response.data.user_type);
+        setUserType(response.data.user_type);
 
         response.data.user_type === "pharmacist"
           ? navigate("/pharmacistHome")
@@ -63,96 +64,102 @@ export default function Login() {
   });
 
   return (
-    <div className={style.loginWrapper}>
-      <div className={style.loginContainer}>
-        <h2 className={`${style.loginTitle} fade-in`}>Login</h2>
+    <>
+      <Helmet>
+        <title>Login</title>
+        <meta name="description" content="Easy Care Login Page" />
+      </Helmet>
+      <div className={style.loginWrapper}>
+        <div className={style.loginContainer}>
+          <h2 className={`${style.loginTitle} fade-in`}>Login</h2>
 
-        {/* Display API Error if any */}
-        {apiError && (
-          <p className={`text-danger text-center ${style.errorMsg}`}>
-            {apiError}
-          </p>
-        )}
+          {/* Display API Error if any */}
+          {apiError && (
+            <p className={`text-danger text-center ${style.errorMsg}`}>
+              {apiError}
+            </p>
+          )}
 
-        <form className={style.loginForm} onSubmit={formik.handleSubmit}>
-          <div className={`${style.formGroup} slide-in`}>
-            <label htmlFor="nationalId">National ID</label>
-            <input
-              type="text"
-              className={style.inputField}
-              id="nationalId"
-              name="national_id"
-              value={formik.values.national_id}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              placeholder="Enter your National ID"
-            />
-            {formik.errors.national_id && formik.touched.national_id ? (
-              <div className="text-danger font-bold mt-2 p-2">
-                {formik.errors.national_id}
-              </div>
-            ) : (
-              ""
-            )}
-          </div>
+          <form className={style.loginForm} onSubmit={formik.handleSubmit}>
+            <div className={`${style.formGroup} slide-in`}>
+              <label htmlFor="nationalId">National ID</label>
+              <input
+                type="text"
+                className={style.inputField}
+                id="nationalId"
+                name="national_id"
+                value={formik.values.national_id}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                placeholder="Enter your National ID"
+              />
+              {formik.errors.national_id && formik.touched.national_id ? (
+                <div className="text-danger font-bold mt-2 p-2">
+                  {formik.errors.national_id}
+                </div>
+              ) : (
+                ""
+              )}
+            </div>
 
-          <div className={`${style.formGroup} slide-in`}>
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              className={style.inputField}
-              id="password"
-              name="password"
-              value={formik.values.password}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              placeholder="Enter your Password"
-            />
-            {formik.errors.password && formik.touched.password ? (
-              <div className="text-danger font-bold mt-2 p-2">
-                {formik.errors.password}
-              </div>
-            ) : (
-              ""
-            )}
-          </div>
+            <div className={`${style.formGroup} slide-in`}>
+              <label htmlFor="password">Password</label>
+              <input
+                type="password"
+                className={style.inputField}
+                id="password"
+                name="password"
+                value={formik.values.password}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                placeholder="Enter your Password"
+              />
+              {formik.errors.password && formik.touched.password ? (
+                <div className="text-danger font-bold mt-2 p-2">
+                  {formik.errors.password}
+                </div>
+              ) : (
+                ""
+              )}
+            </div>
 
-          <div className={`${style.formActions} fade-in`}>
-            {/* Forgot Password Link */}
-            <NavLink
-              to={"/forgotPassword"}
-              className={style.forgotPasswordLink}
-            >
-              Forgot Password?
-            </NavLink>
-
-            {isLoading ? (
-              <button
-                type="button"
-                className="btn myBtn fw-bold mt-3 px-4 py-2"
+            <div className={`${style.formActions} fade-in`}>
+              {/* Forgot Password Link */}
+              <NavLink
+                to={"/forgotPassword"}
+                className={style.forgotPasswordLink}
               >
-                <Blocks
-                  height="28"
-                  width="40"
-                  color="white"
-                  ariaLabel="blocks-loading"
-                  wrapperStyle={{}}
-                  wrapperClass="blocks-wrapper"
-                  visible={true}
-                />
-              </button>
-            ) : (
-              <button
-                disabled={!(formik.isValid && formik.dirty)}
-                type="submit"
-                className="btn myBtn fw-bold mt-3 px-3 py-2"
-              >
-                Login
-              </button>
-            )}
-          </div>
-        </form>
+                Forgot Password?
+              </NavLink>
+
+              {isLoading ? (
+                <button
+                  type="button"
+                  className="btn myBtn fw-bold mt-3 px-4 py-2"
+                >
+                  <Blocks
+                    height="28"
+                    width="40"
+                    color="white"
+                    ariaLabel="blocks-loading"
+                    wrapperStyle={{}}
+                    wrapperClass="blocks-wrapper"
+                    visible={true}
+                  />
+                </button>
+              ) : (
+                <button
+                  disabled={!(formik.isValid && formik.dirty)}
+                  type="submit"
+                  className="btn myBtn fw-bold mt-3 px-3 py-2"
+                >
+                  Login
+                </button>
+              )}
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

@@ -15,6 +15,7 @@ import { Link } from "react-router-dom";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import { Helmet } from "react-helmet";
 
 export default function Home() {
   const settings = {
@@ -29,6 +30,10 @@ export default function Home() {
 
   return (
     <>
+      <Helmet>
+        <title>Home</title>
+        <meta name="description" content="easy care home" />
+      </Helmet>
       <div className="hero-container">
         <div className="hero-content">
           <h1>Doctor, Patient, and Pharmacist - All in One Place</h1>
@@ -204,7 +209,9 @@ export default function Home() {
       </Container>
       {/* FAQ Section */}
       <Container className="my-5 ">
-        <h2 className="text-center mb-4 section-header">Frequently Asked Questions</h2>
+        <h2 className="text-center mb-4 section-header">
+          Frequently Asked Questions
+        </h2>
         <Accordion>
           <Accordion.Item eventKey="0">
             <Accordion.Header>How can I book an appointment?</Accordion.Header>

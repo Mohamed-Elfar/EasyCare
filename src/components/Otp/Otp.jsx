@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import style from "./Otp.module.css";
 import Loading from "../Loading/Loading";
 import { Blocks } from "react-loader-spinner";
+import { Helmet } from "react-helmet";
 
 export default function Otp() {
   const [isOtpVerified, setIsOtpVerified] = useState(false);
@@ -14,7 +15,7 @@ export default function Otp() {
 
   const location = useLocation();
   const email = location.state?.email;
-let navigate=useNavigate()
+  let navigate = useNavigate();
   useEffect(() => {
     setTimeout(() => {
       setIsPageLoading(false);
@@ -66,7 +67,7 @@ let navigate=useNavigate()
         );
         if (response.data.status === "Password updated successfully.") {
           setApiMessage("Your password has been updated successfully.");
-          navigate('/login')
+          navigate("/login");
         }
       } catch (error) {
         const errorMessage =
@@ -80,6 +81,10 @@ let navigate=useNavigate()
 
   return (
     <>
+      <Helmet>
+        <title>OTP</title>
+        <meta name="description" content="easy care otp page" />
+      </Helmet>
       {isPageLoading ? (
         <Loading />
       ) : (

@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { Blocks } from "react-loader-spinner";
 import "./Doctors.css";
+import { Helmet } from "react-helmet";
+import Register from "./../Register/Register";
 
 const DoctorRegister = () => {
   const [apiError, setApiError] = useState(null);
@@ -76,110 +78,116 @@ const DoctorRegister = () => {
   });
 
   return (
-    <main className="d-flex justify-content-center align-items-center py-5">
-      <section className="body d-flex shadow ">
-        <div className="photo w-50 rounded">
-          <img
-            src="src/assets/images/doctorReg.jpg"
-            className="rounded border-0"
-            alt=""
-          />
-        </div>
+    <>
+      <Helmet>
+        <title>Doctor Register</title>
+        <meta name="description" content="Easy Care Doctor Register page" />
+      </Helmet>
+      <main className="d-flex justify-content-center align-items-center py-5">
+        <section className="body d-flex shadow ">
+          <div className="photo w-50 rounded">
+            <img
+              src="src/assets/images/doctorReg.jpg"
+              className="rounded border-0"
+              alt=""
+            />
+          </div>
 
-        <div className="form p-2 py-4 shadow">
-          <form
-            onSubmit={formik.handleSubmit}
-            className="d-flex flex-column align-items-center justify-content-center gap-2"
-          >
-            <h2>Sign Up</h2>
-            {apiError && <div className="error">{apiError}</div>}{" "}
-            {/* Show API error */}
-            {[
-              "full_name",
-              "email",
-              "national_id",
-              "phone_number",
-              "password",
-              "birthday",
-              "address",
-              "hospital",
-              "clinic",
-              "specialization",
-            ].map((field) => (
-              <div className="input-group" key={field}>
-                <label htmlFor={field}>
-                  {field
-                    .replace(/_/g, " ")
-                    .replace(/\b\w/g, (char) => char.toUpperCase())}
-                  :
-                </label>
-                <input
-                  type={
-                    field === "password"
-                      ? "password"
-                      : field === "birthday"
-                      ? "date"
-                      : "text"
-                  }
-                  name={field}
-                  value={formik.values[field]}
+          <div className="form p-2 py-4 shadow">
+            <form
+              onSubmit={formik.handleSubmit}
+              className="d-flex flex-column align-items-center justify-content-center gap-2"
+            >
+              <h2>Sign Up</h2>
+              {apiError && <div className="error">{apiError}</div>}{" "}
+              {/* Show API error */}
+              {[
+                "full_name",
+                "email",
+                "national_id",
+                "phone_number",
+                "password",
+                "birthday",
+                "address",
+                "hospital",
+                "clinic",
+                "specialization",
+              ].map((field) => (
+                <div className="input-group" key={field}>
+                  <label htmlFor={field}>
+                    {field
+                      .replace(/_/g, " ")
+                      .replace(/\b\w/g, (char) => char.toUpperCase())}
+                    :
+                  </label>
+                  <input
+                    type={
+                      field === "password"
+                        ? "password"
+                        : field === "birthday"
+                        ? "date"
+                        : "text"
+                    }
+                    name={field}
+                    value={formik.values[field]}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    required
+                  />
+                  {formik.touched[field] && formik.errors[field] ? (
+                    <div className="error">{formik.errors[field]}</div>
+                  ) : null}
+                </div>
+              ))}
+              <div className="input-group">
+                <label htmlFor="gender">Gender:</label>
+                <select
+                  name="gender"
+                  value={formik.values.gender}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   required
-                />
-                {formik.touched[field] && formik.errors[field] ? (
-                  <div className="error">{formik.errors[field]}</div>
+                >
+                  <option value="">Select Gender</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+                </select>
+                {formik.touched.gender && formik.errors.gender ? (
+                  <div className="error">{formik.errors.gender}</div>
                 ) : null}
               </div>
-            ))}
-            <div className="input-group">
-              <label htmlFor="gender">Gender:</label>
-              <select
-                name="gender"
-                value={formik.values.gender}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                required
-              >
-                <option value="">Select Gender</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Other">Other</option>
-              </select>
-              {formik.touched.gender && formik.errors.gender ? (
-                <div className="error">{formik.errors.gender}</div>
-              ) : null}
-            </div>
-            <div className="col-12 d-flex justify-content-center align-items-center">
-              {loading ? (
-                <button
-                  type="button"
-                  className="btn myBtn fw-bold mt-3 px-4 py-2"
-                >
-                  <Blocks
-                    height="28"
-                    width="40"
-                    color="white"
-                    ariaLabel="blocks-loading"
-                    wrapperStyle={{}}
-                    wrapperClass="blocks-wrapper"
-                    visible={true}
-                  />
-                </button>
-              ) : (
-                <button
-                  disabled={!(formik.isValid && formik.dirty)}
-                  type="submit"
-                  className="btn myBtn fw-bold mt-3 px-3 py-2"
-                >
-                  Register
-                </button>
-              )}
-            </div>
-          </form>
-        </div>
-      </section>
-    </main>
+              <div className="col-12 d-flex justify-content-center align-items-center">
+                {loading ? (
+                  <button
+                    type="button"
+                    className="btn myBtn fw-bold mt-3 px-4 py-2"
+                  >
+                    <Blocks
+                      height="28"
+                      width="40"
+                      color="white"
+                      ariaLabel="blocks-loading"
+                      wrapperStyle={{}}
+                      wrapperClass="blocks-wrapper"
+                      visible={true}
+                    />
+                  </button>
+                ) : (
+                  <button
+                    disabled={!(formik.isValid && formik.dirty)}
+                    type="submit"
+                    className="btn myBtn fw-bold mt-3 px-3 py-2"
+                  >
+                    Register
+                  </button>
+                )}
+              </div>
+            </form>
+          </div>
+        </section>
+      </main>
+    </>
   );
 };
 

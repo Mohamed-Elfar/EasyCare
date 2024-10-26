@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import Loading from "../Loading/Loading";
 import { userContext } from "../UserContext/UserContext";
 import "./DoctorShowHistory.css";
+import { Helmet } from "react-helmet";
 
 export default function DoctorShowHistory() {
   const [medicineList, setMedicineList] = useState(null);
@@ -26,7 +27,7 @@ export default function DoctorShowHistory() {
       );
       if (response.status === 200) {
         setMedicineList(response.data);
-        setPatientDetails(response.data); // Set patient details from the response
+        setPatientDetails(response.data);
       }
     } catch (error) {
       toast.error("Error Happened!");
@@ -37,6 +38,10 @@ export default function DoctorShowHistory() {
 
   return (
     <>
+      <Helmet>
+        <title>Doctor Show History</title>
+        <meta name="description" content="easy care Doctor Show History page" />
+      </Helmet>
       {isLoading ? (
         <Loading />
       ) : (

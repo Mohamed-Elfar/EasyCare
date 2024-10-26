@@ -11,6 +11,7 @@ import {
   FaChevronDown,
   FaChevronUp,
 } from "react-icons/fa";
+import { Helmet } from "react-helmet";
 
 export default function PatientCatigoryDoctors() {
   const [category, setCategory] = useState([]);
@@ -50,6 +51,10 @@ export default function PatientCatigoryDoctors() {
 
   return (
     <>
+      <Helmet>
+        <title>Doctor'sCategory</title>
+        <meta name="description" content="easy care Doctor's Category page" />
+      </Helmet>
       <hr />
       <div className="text-black d-flex flex-column justify-content-center align-items-center p-4 mx-3 mt-5">
         <h2 className={style.catDoc}>Our Categories</h2>
@@ -105,7 +110,8 @@ export default function PatientCatigoryDoctors() {
                         <div className="d-flex align-items-start">
                           <FaEnvelope className={`${style.profileIcon} mx-1`} />
                           <p>
-                            <strong>Email: </strong> {categoryDoc.email || "N/A"}
+                            <strong>Email: </strong>{" "}
+                            {categoryDoc.email || "N/A"}
                           </p>
                         </div>
                         <div className="d-flex align-items-start">

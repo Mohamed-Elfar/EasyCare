@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import axios from "axios";
 import { userContext } from "../UserContext/UserContext";
 import { Blocks } from "react-loader-spinner";
+import { Helmet } from "react-helmet";
 
 export default function DoctorHome() {
   const { userToken } = useContext(userContext);
@@ -89,6 +90,10 @@ export default function DoctorHome() {
 
   return (
     <>
+      <Helmet>
+        <title>Add Prescription </title>
+        <meta name="description" content="easy care Add Prescription page" />
+      </Helmet>
       <div className="addForm d-flex flex-column justify-content-center align-items-center text-center">
         <h1>Add Prescription</h1>
         {apiMessage && (

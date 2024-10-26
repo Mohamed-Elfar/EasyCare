@@ -16,7 +16,7 @@ import image from "../../assets/images/doctor.jpeg";
 import { useContext } from "react";
 import { userContext } from "../UserContext/UserContext";
 import Loading from "../Loading/Loading";
-import { NavLink } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 export default function DoctorProfile() {
   const [loading, setLoading] = useState(true);
@@ -56,6 +56,10 @@ export default function DoctorProfile() {
     );
   return (
     <>
+      <Helmet>
+        <title>Doctor Home</title>
+        <meta name="description" content="easy care Doctor Home" />
+      </Helmet>
       <div className="profile-container">
         <img src={image} alt="Doctor image" className="profile-photo" />
         <h1 className="profile-header">Doctor Information</h1>
