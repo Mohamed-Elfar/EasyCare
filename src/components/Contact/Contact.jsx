@@ -67,8 +67,8 @@ export default function Contact() {
   return (
     <>
       <Helmet>
-        <title>Pharmacist Home</title>
-        <meta name="description" content="easy care Pharmacist Home" />
+        <title>Contact Us</title>
+        <meta name="description" content="easy care Contact Us page" />
       </Helmet>
       <div className={style.contactFormContainer}>
         <h2>Contact Us</h2>
