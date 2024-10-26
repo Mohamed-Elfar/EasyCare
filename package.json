@@ -3,8 +3,6 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://Mohamed-Elfar.github.io/EasyCare",
-
   "scripts": {
     "dev": "vite",
     "build": "vite build",
